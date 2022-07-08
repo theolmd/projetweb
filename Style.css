@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height:100%;
+}
+/*mise en forme de la barre de navigation*/
+nav{
+    width: 100%;
+    margin: 0 auto;
+    background-color: deepskyblue;
+    position: sticky;
+    top: 0px;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+nav ul li{
+    float: left;
+    width: 25%;
+    text-align: center;
+    position: relative;
+}
+
+nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+    margin-left: 250px;
+}
+
+nav a:hover{
+    color: orange;
+    border-bottom: 2px solid gold;
+}
+
+.sous{
+    display: none;
+    box-shadow: 0px 1px 2px #CCC;
+    background-color: deepskyblue;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    margin-left: 130px;
+}
+nav > ul li:hover .sous{
+    display: block;
+}
+.sous li{
+    float: none;
+    width: 100%;
+    text-align: left;
+}
+.sous a{
+    padding: 5px;
+    border-bottom: none;
+    margin-left: 90px;
+}
+.sous a:hover{
+    border-bottom: none;
+    background-color: RGBa(200,200,200,0.1);
+}
+.deroulant > a::after{
+    content:" ▼";
+    font-size: 10px;
+}
+/*mise en forme du titre*/
+H1{
+    text-align: center;
+    color: orange;
+}
+#banniere
+{
+    height: auto;
+    width: 100%;
+}
+#logo
+{
+    width: 170px;
+    float: left;
+    margin-left: -155px;
+    margin-top: -30px;
+
+}
+
+#middleplane
+{
+    margin-left: 155px;
+    padding: 20px ;
+}
+/*mise en forme du carrousel*/
+#presentationJeux
+{
+    border: 2px deepskyblue solid;
+    padding:20px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: 30px;
+}
+/*mise en forme du block d'explication*/
+#explication
+{
+    border: 2px deepskyblue solid;
+    padding:20px 100px 60px 20px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+H2
+{
+    text-align: left;
+    color: darkorange;
+    font-family: "Noto Sans";
+    text-decoration: underline;
+}
+#texte
+{
+    margin-left: 185px;
+    padding: 20px ;
+    margin-top: 30px;
+    text-align: justify;
+}
+#image
+{
+    width: 180px;
+    float: left;
+    padding: 20px;
+}
+
+
+/* PARTIE STREET FIGHTER */
+#sfTitle{
+    color: orange;
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 50px;
+    padding: 20px;
+}
+    /* Container Video */
+#gameVideo{
+    margin-left: 100px;
+    border: orange solid 3px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 50px;
+}
+#sfVideo{
+    border: solid 5px orange;
+    margin-left: 20px;
+}
+#sfVideoScnd{
+    margin-left: 50px;
+    border: solid 5px orange;
+}
+#sfDemoTitle{
+    color:black;
+    margin-top: 50px;
+    margin-left: 200px;
+}
+    /* Container description du jeu */
+#sfTitleDesc{
+    color:black;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+#sfMenu{
+    width: 30%;
+    height: 30%;
+}
+#sfGameDesc{
+    background-color: orange;
+    color: white;
+    padding:20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+#sfDescGame{
+    float: left;
+    margin-top: 20px;
+    margin-left: 100px;
+    width: 40%;
+    font-size: 20px;
+}
+    /* Container details du jeu */
+#sfGameDetail{
+    border: orange solid 3px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 50px;
+}
+#sfCharSelect{
+    width: 40%;
+    height: 40%;
+}
+#sfGameCat{
+    float: right;
+    margin-top: 50px;
+    margin-right: 170px;
+    font-size: 20px;
+}
+#sfSims{
+    width:35%;
+    height:35%;
+}
+#sfElden{
+    width: 25%;
+    height:25%;
+    margin-right: 170px;
+    float:left;
+}
+/*mise en forme du formulaire de contact */
+.contactez-nous {
+    width: 700px;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 0 50px 0 50px;
+    background: white;
+    margin-left: 100px;
+}
+
+.contactez-nous > h1 {
+    font-weight: 500;
+}
+
+.contactez-nous > p {
+    font-weight: 300;
+}
+
+form div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 83px;
+    margin-top: 25px;
+}
+
+form div > label {
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+form div > input, form div > select, form div > textarea {
+    background: orange;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Montserrat, "sans-serif";
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
+}
+
+form div > input, form div > select {
+    height: 50px;
+    padding-left: 10px;
+}
+
+form div > select {
+    appearance: none;
+    background-size: 15px;
+    background-position: right 10px top 50%;
+    background-repeat: no-repeat;
+}
+
+form div > textarea {
+    height: 195px;
+    padding: 15px 0px 0px 10px;
+}
+
+form div > input::placeholder, form div > textarea::placeholder {
+    color: white;
+}
+
+form div > select:invalid {
+    color: white;
+}
+
+form div > select option {
+    background: white;
+    color: #303030;
+}
+
+form div:last-child {
+    align-items:center;
+    margin-top: 20px;
+}
+
+form button {
+    width: 450px;
+    max-width: 500px;
+    height: 60px;
+    font-weight: 700;
+    font-size: 28px;
+    background: white;
+    border: rgba(48, 48, 48, 0.5) solid 1px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+    color: #303030;
+}
