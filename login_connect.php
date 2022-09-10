@@ -20,22 +20,32 @@ include("header.php")
     <body>
 
     <div class="container">
-        <span>Se connecter</span>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Entrez l'adresse mail" name="email" required>
+        <form action ="profile.php" method="POST">
+        <h1>Se connecter</h1>
+        <label for="email" class="form-label"><b>Email</b></label>
+        <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
 
-        <label for="psw"><b>Mot de passe</b></label>
-        <input type="password" placeholder="Entrez le mot de passe" name="psw" required>
+        <label for="psw" class="form-label"><b>Mot de passe</b></label>
+        <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
 
-        <button type="submit">Se connecter</button>
+        <button onclick=verif() type="submit" class="btn-outline-info">Se connecter</button>
         <label><a href="login_register.php">Pas de compte ? S'inscrire.</a></label>
 
     </div>
-
+    </form>
 
     </body>
-
+<script>
+    function verif()
+    //Affiche une alerte si au moins l'un des deux champs est vide
+    {
+        if ((document.getElementById("login").value == "") || (document.getElementById("mdp").value == ""))
+        {
+            alert("Erreur : veuillez compléter les deux champs avant de continuer");
+        }
+    }
+</script>
 <!-- Bannière de pied de page -->
-<img id="banniere" src="img/banniere_16.png">
+<?php include("footer.php")?>
 
 </html>

@@ -17,13 +17,18 @@
 
 <body>
 <?php
-include("header.php")
+$user = $_SESSION["user"];
+
+if (isset ($user))
+{
+    include ("headerUser.php");
+}
+else{
+    include("header.php");
+}
 ?>
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
-    <div class="container">
-        <img id="logo" src="145e7a2579034ad5a9924f4da9f494c5%20(1).png">
 
-        <div>
             <h3 id="sfTitle">
                 Les Sims 4
             </h3>

@@ -14,13 +14,31 @@
     </title>
 </head>
 <?php
-include("header.php")
+include("headerUser.php");
+session_start();
+
+$connexion = connexion();
+if (is_a($connexion,  "PDO")) {
+    if (empty($_POST['login']) || empty($_POST['mdp'])) {
+        header('Location: login_connect.php');
+        exit();
+    }
+    if (!empty($_POST['login']) && !empty($_POST['mdp'])) {
+        $crudUser = new user_Crud($connexion);
+        $leUser = $crudUser->verifUser($_POST['login'], $_POST['mdp']);
+        if (!($leUser == null)) {
+            $_SESSION["user"] = $leUser;
+        }
+    }
+}
 ?>
 
 <body>
 
     <container>
+
         <img>
     </container>
 
 </body>
+</html>

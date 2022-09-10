@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="css/bootstrap-5.1.3-dist/css/bootstrap.css"/>
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <?php
-    include("header.php")
+    if (isset ($user))
+    {
+        include ("headerUser.php");
+    }
+    else{
+        include("header.php");
+    }
     ?>
     <!-- Titre de l'onglet -->
     <title>
@@ -21,10 +27,7 @@
     <!-- Ajout de la bannière -->
 
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
-    <div class="container">
-        <img id="logo" src="145e7a2579034ad5a9924f4da9f494c5%20(1).png">
 
-        <div>
             <h3 id="sfTitle">
                 Mario Kart 8 Deluxe
             </h3>

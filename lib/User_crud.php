@@ -130,10 +130,7 @@ class user_Crud
 
     public function modifMDP($email, $mdp)
     {
-        //Récupération des valeurs
-        //$mdp = $unUser->getMotPasse();
-        //$login = $unUser->getLogin();
-        //Préparation de la requête
+
         $req_prepare =
             "UPDATE User 
                 Set user_mdp = sha1('$mdp')
@@ -151,6 +148,38 @@ class user_Crud
         }
         return $requeteOK;
     }
+    public function verifUser(string $unMail, string $unMotPasse): ?user
+    {
+        $mail = $unMail;
+        $motPasse = $unMotPasse;
+        $req_prepare =
+            "SELECT *
+                FROM t_user 
+                WHERE user_mail = :mail
+                  AND user_mdp = SHA1(:motPasse)";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $requete->bindParam(':motPasse', $motPasse, PDO::PARAM_STR);
+
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $user = new user(strval($result->user_nom),
+                    strval($result->user_prenom),
+                    intval($result->user_id),
+                    $mail, strval($result->user_datedenaissance),
+                    strval($result->user_sexe),
+                    strval($result->user_departement),
+                    SHA1($unMotPasse));
+
+            } else {
+                $user = null;
+            }
+        } catch (PDOException $e) {
+            $user = null;
+        }
+        return $user;}
 
 
 }

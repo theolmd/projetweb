@@ -16,7 +16,8 @@
     </title>
 </head>
 <?php
-include("header.php");
+
+include_once("header.php");
 include_once('RecupJeux.php');
 session_start();
 session_destroy();
@@ -30,11 +31,6 @@ $id=9;
 $Jeu4=infosJeu($id);
 ?>
 <body>
-
-<!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
-    <div class="container">
-    <img id="logo" src="img\Logo.png">
-    <div id="middleplane">
     <H1>
         Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
     </H1>

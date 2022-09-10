@@ -9,7 +9,13 @@
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
     <?php
-    include_once("header.php");
+    if (isset ($user))
+    {
+        include ("headerUser.php");
+    }
+    else{
+        include("header.php");
+    }
     include_once('RecupJeux.php');
     $id=9;
     $Jeu=infosJeu($id);
@@ -24,10 +30,6 @@
 
 
 <body>
-    <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
-    <div class="container">
-        <img id="logo" src="img/Logo.png">
-        <div>
             <!-- Affichage du nom du jeu -->
             <h3 id="sfTitle">
                <?php echo $Nom;?>
@@ -169,8 +171,8 @@
 
     <div>
         <button class="btn" id="btnVote">
-            <a href="vote_choices.php">
-                Je vote pour ce tournoi !
+            <a href="login_connect.php">
+                Je veux voter !
             </a>
         </button>
     </div>

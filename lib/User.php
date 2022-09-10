@@ -2,15 +2,14 @@
 
 class User
 {
-    private string $id;
-    private string $motPasse;
     private string $nom;
     private string $prenom;
+    private int $id;
     private string $email;
     private string $dateDeNaissance;
     private string $sexe;
     private string $departement;
-
+    private string $motPasse;
 
     public function __construct()
     {
@@ -25,7 +24,7 @@ class User
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @param string $motPasse
      * @param string $nom
      * @param string $prenom
@@ -34,17 +33,17 @@ class User
      * @param string $sexe
      * @param string $departement
      */
-    public function __construct6(string $id, string $motPasse, string $nom, string $prenom, string $email,
-                                 string $dateDeNaissance, string $sexe, string $departement)
+    public function __construct8(string $nom,string $prenom,int $id,   string $email,
+                                 string $dateDeNaissance, string $sexe, string $departement, string $motPasse)
     {
-        $this->id = $id;
-        $this->motPasse = $motPasse;
         $this->nom = $nom;
         $this->prenom = $prenom;
+        $this->id = $id;
         $this->email = $email;
         $this->dateDeNaissance = $dateDeNaissance;
         $this->sexe = $sexe;
         $this->departement = $departement;
+        $this->motPasse = $motPasse;
     }
     public function __construct4(string $motpasse, string $nom, string $prenom, string $email)
     {
@@ -173,17 +172,17 @@ class User
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param int $id
      */
-    public function setId(string $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
