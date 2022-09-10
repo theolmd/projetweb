@@ -51,7 +51,7 @@
                 Description du jeu :
             </H2>
             <div id="sfGameDesc" class="container">
-                <img src="mario1.jpg" id="sfMenu">
+                <img src="img/mario1.jpg" id="sfMenu">
                 <div id="sfDescGame">
                 Faites la course n’importe où, n’importe quand <br>
                     Disputez des courses dans pas moins de 48 circuits, incluant des pistes
@@ -63,7 +63,7 @@
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="mario2.jpg" id="sfCharSelect">
+        <img src="img/mario2.jpg" id="sfCharSelect">
         <div id="sfGameCat">
         Catégorie : Jeu de courses<br>
         Date de sortie : 28 Avril 2017<br>
@@ -77,8 +77,33 @@
 
 
 
+
+    <!--Container tournois-->
+
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
+                Règles : <br>
+                Un grand prix (4 courses), 4 poules de 12 joueurs.<br>
+                Les 3 premiers gagnants de chaque poule accèdent à la finale. <br>
+                Nombre de participants : 48
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn" id="btnVote">
+            <a href="vote_choices.php">
+                Je vote !
+            </a>
+        </button>
+    </div>
+
 </body>
 <!-- Bannière de pied de page -->
-<img id="banniere" src="banniere_16.png">
+<img id="banniere" src="img/banniere_16.png">
 
 </html>

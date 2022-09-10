@@ -50,7 +50,7 @@ include("header.php")
                 Description du jeu :
             </H2>
             <div id="sfGameDesc" class="container">
-                <img src="sf.jpg" id="sfMenu">
+                <img src="img/sf.jpg" id="sfMenu">
                 <div id="sfDescGame">
                 Vivez toute l'intensité du combat avec Street Fighter V ! <br>
                 Choisissez parmi 16 personnages, chacun ayant son histoire et des défis d'entraînement uniques à surmonter. <br>
@@ -60,7 +60,7 @@ include("header.php")
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="sheesh.jpg" id="sfCharSelect">
+        <img src="img/sheesh.jpg" id="sfCharSelect">
         <div id="sfGameCat">
         Catégorie : Jeu de combat<br>
         Date de sortie : 16 Février 2016<br>
@@ -74,8 +74,33 @@ include("header.php")
 
 
 
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
+                Règles : <br>
+                Combats en 1 contre 1.<br>
+                3 match pour 1 round.<br>
+                Gagner les 5 rounds puis la finale.<br>
+                Nombre de participants : 32
+            </div>
+        </div>
+    </div>
+
+<div>
+    <button class="btn" id="btnVote">
+        <a href="vote_choices.php">
+            Je vote !
+        </a>
+    </button>
+</div>
+
+
+
 </body>
 <!-- Bannière de pied de page -->
-<img id="banniere" src="banniere_16.png">
+<img id="banniere" src="img/banniere_16.png">
 
 </html>

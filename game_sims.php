@@ -50,7 +50,7 @@ include("header.php")
                 Description du jeu :
             </H2>
             <div id="sfGameDesc" class="container">
-                <img src="sims2.jpg" id="sfMenu">
+                <img src="img/sims2.jpg" id="sfMenu">
                 <div id="sfDescGame">
                     Libérez votre imagination et créez un monde de Sims unique qui vous ressemble ! <br>
                     Explorez et personnalisez les moindres détails de vos Sims et de vos maisons, et bien plus encore.
@@ -60,7 +60,7 @@ include("header.php")
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="sims1.jpg" id="sfSims">
+        <img src="img/sims1.jpg" id="sfSims">
         <div id="sfGameCat">
         Catégorie : Jeu de simulation<br>
         Date de sortie : 2 septembre 2014<br>
@@ -73,9 +73,34 @@ include("header.php")
     </div>
 
 
+        <!--Container tournois-->
+
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
+                Règles : <br>
+                Le but est de faire un maximum de Simflouzs en 15min <br>
+                Sans codes de triche, sans vendre les objets de la maison...<br>
+                Tous les joueurs disposent du même sims et de la même maison de départ.<br>
+                Nombre de participants : 16
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn" id="btnVote">
+            <a href="vote_choices.php">
+                Je vote !
+            </a>
+        </button>
+    </div>
+
 
 </body>
 <!-- Bannière de pied de page -->
-<img id="banniere" src="banniere_16.png">
+<img id="banniere" src="img/banniere_16.png">
 
 </html>

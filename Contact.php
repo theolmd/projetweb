@@ -17,7 +17,7 @@
 <body>
 <!-- Ajout de la bannière -->
 
-        <img id="banniere" src="banniere_16.png">
+        <img id="banniere" src="img/banniere_16.png">
 
 <!-- Création de la barre de navigation avec une liste et une sous liste -->
         <nav>
@@ -69,6 +69,6 @@
 </div>
 </div>
 
-<img id="banniere" src="banniere_16.png">
+<img id="banniere" src="img/banniere_16.png">
 
 </html>

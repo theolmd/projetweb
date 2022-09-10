@@ -21,7 +21,7 @@ nav ul{
 
 nav ul li{
     float: left;
-    width: 25%;
+    width: 20%;
     text-align: center;
     position: relative;
 }
@@ -36,13 +36,14 @@ nav a{
     display: block;
     text-decoration: none;
     color: black;
+    font-weight: bold;
     border-bottom: 2px solid transparent;
     padding: 10px 0px;
-    margin-left: 250px;
+    margin-left: 50px;
 }
 
 nav a:hover{
-    color: orange;
+    color: white;
     border-bottom: 2px solid gold;
 }
 
@@ -53,7 +54,7 @@ nav a:hover{
     position: absolute;
     width: 100%;
     z-index: 1000;
-    margin-left: 130px;
+    margin-left: 50px;
 }
 nav > ul li:hover .sous{
     display: block;
@@ -66,7 +67,7 @@ nav > ul li:hover .sous{
 .sous a{
     padding: 5px;
     border-bottom: none;
-    margin-left: 90px;
+    margin-left: 50px;
 }
 .sous a:hover{
     border-bottom: none;
@@ -309,3 +310,41 @@ form button {
     box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
     color: #303030;
 }
+
+#cutLine {
+    color: orange;
+    border: solid 3px;
+}
+
+#sfTournoiDesc{
+    background-color: orange;
+    table-layout: fixed;
+    color: white;
+    padding:20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+#table{
+    border-collapse : collapse;
+    border: 1px solid black;
+    padding: 5px;
+    size: auto;
+}
+#table1{
+    border-collapse : collapse;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+#btnVote{
+    border: 2px solid orange;
+    background-color: orange;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+}
+
