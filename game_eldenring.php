@@ -9,13 +9,7 @@
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
     <?php
-    if (isset ($user))
-    {
-        include ("headerUser.php");
-    }
-    else{
-        include("header.php");
-    }
+
     include_once('RecupJeux.php');
     $id=9;
     $Jeu=infosJeu($id);

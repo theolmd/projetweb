@@ -13,7 +13,7 @@
     </title>
 </head>
 <?php
-include("headerUser.php");
+include("header.php");
 include_once("lib\User_crud.php");
 include_once("connexion.php");
 include_once("lib\user.php");?>

@@ -14,7 +14,7 @@
     </title>
 </head>
 <?php
-include("headerUser.php");
+include("header.php");
 session_start();
 
 $connexion = connexion();

@@ -17,13 +17,8 @@
 
 <body>
 <?php
-if (isset ($user))
-{
-    include ("headerUser.php");
-}
-else{
-    include("header.php");
-}
+ include ("header.php");
+
 ?>
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
 

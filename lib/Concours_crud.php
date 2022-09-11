@@ -46,4 +46,23 @@ class Concours_crud
         }
         return $unConcours;
     }
+
+    public function recupNbVote(int $id) : int
+    {
+        $idConcours = $id;
+        $req_prepare = "SELECT COUNT(*)
+                FROM t_concours 
+                WHERE concours_idjeux = :idConcours
+                AND concours_voteiduser IS NOT NULL";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':idConcours', $idConcours, PDO::PARAM_INT);
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            $result = null;
+        }
+        return $result;
+    }
 }
