@@ -45,6 +45,18 @@ class User
         $this->departement = $departement;
         $this->motPasse = $motPasse;
     }
+
+    public function __construct7(string $nom,string $prenom, string $email,
+                                 string $dateDeNaissance, string $sexe, string $departement, string $motPasse)
+    {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->email = $email;
+        $this->dateDeNaissance = $dateDeNaissance;
+        $this->sexe = $sexe;
+        $this->departement = $departement;
+        $this->motPasse = $motPasse;
+    }
     public function __construct4(string $motpasse, string $nom, string $prenom, string $email)
     {
         $this->motPasse=$motpasse;

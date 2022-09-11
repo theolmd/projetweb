@@ -14,7 +14,7 @@ class user_Crud
         $this->db = null;
     }
 
-    public function insertUser(user $unUser): bool
+    public function insertUser(user $unUser): ?User
     {
         //récupération des valeurs
         $nom = $unUser->getNom();
@@ -25,22 +25,23 @@ class user_Crud
         $departement = $unUser->getDepartement();
         $dateDeNaissance = $unUser->getDatedeNaissance();
         //préparation de la requête
-        $insert = $this->db->prepare("INSERT INTO NOT EXISTS user
-    (user_nom, user_prenom, user_email, user_mdp,user_sexe, user_departement, user_dateDeNaissance) 
-     VALUES (:nom, :prenom; :email, SHA1(:mdp), :sexe, :departement, :dateDeNaissance)");
+        $insert = $this->db->prepare("INSERT INTO t_user
+    (user_nom, user_prenom, user_mail, user_datedenaissance, user_sexe, user_departement, user_mdp) 
+     VALUES (:nom, :prenom, :email, :dateDeNaissance, :sexe, :departement, SHA1(:mdp))");
         $insert->bindParam(':nom', $nom, PDO::PARAM_STR);
         $insert->bindParam(':prenom', $prenom, PDO::PARAM_STR);
         $insert->bindParam(':email', $email, PDO::PARAM_STR);
-        $insert->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+        $insert->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
         $insert->bindParam(':sexe', $sexe, PDO::PARAM_STR);
         $insert->bindParam(':departement', $departement, PDO::PARAM_STR);
-        $insert->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
+        $insert->bindParam(':mdp', $mdp, PDO::PARAM_STR);
 
         try {
             $insert->execute();
-            $retour = true;
+            $retour = $unUser;
         } catch (PDOException $e) {
-            $retour = false;
+            $retour = NULL;
+            echo "pb requête";
         }
         return $retour;
     }
@@ -180,6 +181,40 @@ class user_Crud
             $user = null;
         }
         return $user;}
+
+    public function controleUser(string $unMail, string $unMotPasse): ?user
+    {
+        $mail = $unMail;
+        $motPasse = $unMotPasse;
+        $req_prepare =
+            "SELECT user_nom, user_prenom, user_mail, user_datedenaissance, user_sexe, user_departement, user_mdp
+                FROM t_user 
+                WHERE user_mail = :mail
+                  AND user_mdp = SHA1(:motPasse)";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $requete->bindParam(':motPasse', $motPasse, PDO::PARAM_STR);
+
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $user = new user(strval($result->user_nom),
+                    strval($result->user_prenom),
+                    $mail, strval($result->user_datedenaissance),
+                    strval($result->user_sexe),
+                    strval($result->user_departement),
+                    $unMotPasse);
+
+            } else {
+                $user = null;
+            }
+        } catch (PDOException $e) {
+            $user = null;
+        }
+        return $user;}
+
+
 
 
 }

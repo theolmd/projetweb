@@ -29,20 +29,20 @@ include("header.php")
         <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
         <label for="psw" class="form-label"><b>Mot de passe *</b></label>
         <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
-        <label for="dateNaissane" class="form-label"><b>Date de naissance</b></label>
+        <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
         <input type="date" class="form-control" name="dateNaissance" >
         <label for="sexe" class="form-label"><b>Sexe </b></label>
         <select name="sexe" id="sexe">
             <option value="">--Choisissez une option--</option>
             <option value="F">F</option>
             <option value="M">M</option>
-            <option value="Autres"> </option>
-        </select>
+            <option value="Autres">Autre</option>
+        </select> <br>
         <label for="departement" class="form-label"><b>Département</b></label>
         <input type="text" class="form-control" name="departement" >
 
 
-        <button type="submit" class="btn-outline-info">S'enregistrer </button>
+        <button type="submit" name="enregistrer" value="enregistrer" id="enregistrer" >S'enregistrer </button>
 
         <p> * Les champs sont obligatoires. </p>
 

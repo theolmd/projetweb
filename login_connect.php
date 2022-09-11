@@ -22,15 +22,18 @@ include("header.php")
     <div class="container">
         <form action ="profile.php" method="POST">
         <h1>Se connecter</h1>
+            <div class ="">
         <label for="email" class="form-label"><b>Email</b></label>
         <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
-
+    </div>
+            <div class="">
         <label for="psw" class="form-label"><b>Mot de passe</b></label>
         <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
-
-        <button onclick=verif() type="submit" class="btn-outline-info">Se connecter</button>
-        <label><a href="login_register.php">Pas de compte ? S'inscrire.</a></label>
-
+    </div>
+            <div class="row">
+        <button onclick=verif() type="submit" name="login" value ="login" id="login">Se connecter</button>
+        </div>
+            <label><a href="login_register.php">Pas de compte ? S'inscrire.</a></label>
     </div>
     </form>
 
@@ -39,7 +42,7 @@ include("header.php")
     function verif()
     //Affiche une alerte si au moins l'un des deux champs est vide
     {
-        if ((document.getElementById("login").value == "") || (document.getElementById("mdp").value == ""))
+        if ((document.getElementById("email").value == "") || (document.getElementById("mdp").value == ""))
         {
             alert("Erreur : veuillez compléter les deux champs avant de continuer");
         }
