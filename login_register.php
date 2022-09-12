@@ -17,6 +17,7 @@
 include("header.php")
 ?>
 <h1> Créer un compte </h1>
+<!-- Page de création de compte -->
 
 <div class="container">
     <form action ="profile.php" method="POST">

@@ -9,7 +9,7 @@
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
     <?php
-
+/// créer l'objet concours avec l'id du jeu et l'objet jeu
     include_once('RecupJeux.php');
     $id=9;
     $Jeu=infosJeu($id);
@@ -17,7 +17,8 @@
     ?>
     <!-- Titre de l'onglet -->
     <title>
-        <?php $Nom = $Jeu->getNomJeu();
+        <?php
+        $Nom = $Jeu->getNomJeu();
                echo $Nom;?>
     </title>
 </head>
@@ -67,6 +68,7 @@
         <img src="img/eldenring1.jpg" id="sfElden">
         <div id="sfEldent">
         Catégorie : <?php
+            /// recupération des informations du jeu
             $categ = $Jeu->getCategorie();
         echo $categ;
         ?><br>

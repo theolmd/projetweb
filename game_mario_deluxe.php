@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap-5.1.3-dist/css/bootstrap.css"/>
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <?php
-        include ("header.php");
+        include("header.php");
     ?>
     <!-- Titre de l'onglet -->
     <title>

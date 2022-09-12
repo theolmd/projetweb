@@ -17,7 +17,7 @@
 
 <body>
 <?php
- include ("header.php");
+ include("header.php");
 
 ?>
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->

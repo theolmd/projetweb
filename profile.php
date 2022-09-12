@@ -24,7 +24,8 @@ include_once("lib\user.php");?>
 session_start();
 $connexion = connexion();
 if (is_a($connexion,  "PDO")) {
-    if (!empty($_POST['login'])){
+    if (!empty($_POST['login'])) /// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
+        {
         if(empty($_POST['mail']) || empty($_POST['mdp'])) {
             header('Location: login_connect.php');
             exit();}
@@ -33,7 +34,7 @@ if (is_a($connexion,  "PDO")) {
              $crudUser = new user_Crud($connexion);
              $leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
                  if(!($leUser==null)) {
-                     $_SESSION["user"] = $leUser ?>
+                     $_SESSION['user'] = $leUser ?>
 
                          <div class="container">
                 <label for="login" class="form-label">Adresse mail : </label>
@@ -72,7 +73,7 @@ if (is_a($connexion,  "PDO")) {
         $existUser = $crudUser->controleUser($mail, $mdp);
 
 
-
+/// verifier si le user n'existe pas déjà pour se créer un compte et lui afficher un message d'erreur si c'est le cas
                 if($existUser==$nouvUser){
                     $nouvUser=NULL;
                     echo "Votre adresse mail est déjà utilisée.";?>
@@ -83,7 +84,7 @@ if (is_a($connexion,  "PDO")) {
 
 
 <?php }
-                else {
+                else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
                     $crudUser = new user_Crud($connexion);
                     $leUser = $crudUser->insertUser($nouvUser);
                     $_SESSION["user"] = $leUser; ?>
@@ -117,8 +118,12 @@ if (is_a($connexion,  "PDO")) {
                    id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
         </div>
-<?php } }}?>
+<?php } }}
+?>
 
+                             <?php
+
+                             ?>
 </body>
 
 

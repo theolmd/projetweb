@@ -13,7 +13,7 @@ class user_Crud
     {
         $this->db = null;
     }
-
+/// fonction pour inserer une user
     public function insertUser(user $unUser): ?User
     {
         //récupération des valeurs
@@ -45,7 +45,7 @@ class user_Crud
         }
         return $retour;
     }
-
+///foncton pour supprimer un user
     public function deleteUser(user $unUser): bool
     {
         //récupération des valeurs
@@ -62,7 +62,7 @@ class user_Crud
         }
         return $retour;
     }
-
+/// fonction pour modifier un user
     public function updateUser(user $unUser, string $unNom, string $unPrenom,  string $unEmail,string $unMotPasse,
                                string $unSexe, string $unDepartement): bool
     {
@@ -95,7 +95,7 @@ class user_Crud
         }
         return $retour;
     }
-
+/// fonction pour récupérer un user
     public function recupUser(int $unId): ?user
     {
         $id = $unId;
@@ -128,7 +128,7 @@ class user_Crud
         return $user;
     }
 
-
+/// fonction pour modifier le mot de passe
     public function modifMDP($email, $mdp)
     {
 
@@ -149,6 +149,7 @@ class user_Crud
         }
         return $requeteOK;
     }
+    ///fonction pour vérifier la connexion du user
     public function verifUser(string $unMail, string $unMotPasse): ?user
     {
         $mail = $unMail;
@@ -181,7 +182,7 @@ class user_Crud
             $user = null;
         }
         return $user;}
-
+/// fonction pour voir si le user existe déjà ou pas
     public function controleUser(string $unMail, string $unMotPasse): ?user
     {
         $mail = $unMail;

@@ -12,6 +12,8 @@ class Concours_crud
     {
         $this->db = null;
     }
+
+    /// fonction pour recuperer les informations d'un concours avec l'id du jeu
     public function recupConcours(int $unId): ?concours
     {
         $id = $unId;
@@ -46,7 +48,7 @@ class Concours_crud
         }
         return $unConcours;
     }
-
+///fonction pour récupérer le nb de vote sur un concours
     public function recupNbVote(int $id) : int
     {
         $idConcours = $id;
@@ -64,5 +66,50 @@ class Concours_crud
             $result = null;
         }
         return $result;
+    }
+
+    public function ajoutVote(int $id_User, int $id_jeux) : bool
+    {
+        $idUser=$id_User;
+        $idJeux = $id_jeux;
+        $req_prepare = "INSERT INTO t_concours (concours_voteiduser, concours_idjeux)
+                VALUES (:idUser, :idJeux) 
+               ";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $requete->bindParam(':idJeux', $idJeux, PDO::PARAM_INT);
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $vote=true;
+            } else {
+                $vote = false;}
+
+        } catch (PDOException $e) {
+            $vote=false;
+        }
+        return $vote;
+    }
+    public function verifVote(int $id_User) : bool
+    {
+        $idUser=$id_User;
+        $req_prepare = "SELECT *
+         FROM t_concours
+            WHERE concours_voteiduser= :idUser
+               ";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+            if (empty($result)) {
+                $verif=true;
+        } else {
+                $verif = false;}}
+            catch (PDOException $e) {
+            $verif=false;
+        }
+        return $verif;
     }
 }
