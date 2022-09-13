@@ -9,6 +9,11 @@
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
     <?php
+    if (!empty($_SESSSION['user'])) {
+        include_once("headerConnect.php");
+    } else {
+        include_once("header.html");
+    }
 /// créer l'objet concours avec l'id du jeu et l'objet jeu
     include_once('RecupJeux.php');
     $id=9;

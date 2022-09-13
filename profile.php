@@ -24,6 +24,43 @@ include_once("lib\user.php");?>
 session_start();
 $connexion = connexion();
 if (is_a($connexion,  "PDO")) {
+if (isset($_SESSION['user']))
+{ $leUser=$_SESSION['user']
+    ?>
+    <div class="container">
+        <label for="login" class="form-label">Adresse mail : </label>
+        <input type="text" class="form-control"
+               id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
+        <label for="nom" class="form-label">Nom : </label>
+        <input type="text" class="form-control"
+               id="nom" name="nom" disabled value="
+               <?php echo $leUser->getNom();?>">
+        <label for="prenom" class="form-label">Prénom : </label>
+        <input type="text" class="form-control"
+               id="prenom" name="prenom" disabled value="
+               <?php echo $leUser->getPrenom();?>">
+        <label for="naissance" class="form-label">Date de naissance : </label>
+        <input type="text" class="form-control"
+               id="datedeNaissance" name="datedeNaissance" disabled value="
+               <?php $date=$leUser->getDateDeNaissance();
+        $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
+        echo $dateN;?>">
+        <label for="sexe" class="form-label">Sexe : </label>
+        <input type="text" class="form-control"
+               id="sexe" name="sexe" disabled value="
+               <?php echo $leUser->getSexe();?>">
+        <label for="departement" class="form-label">Département : </label>
+        <input type="text" class="form-control"
+               id="departement" name="departement" disabled value="
+               <?php echo $leUser->getDepartement();?>">
+    </div>
+    <form action="Index.php" method ="POST">
+        <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+    </form>
+
+
+    <?php
+}
     if (!empty($_POST['login'])) /// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
         {
         if(empty($_POST['mail']) || empty($_POST['mdp'])) {
@@ -121,45 +158,9 @@ $_SESSION['user']=$leUser;?>
         </div>
                     <button type="submit"onclick="function deconnexion()">Se déconnecter</button>
 <?php } }
-if (empty($_POST['login']) OR (empty($_POST['enregistrer'])))
-{ $leUser=$_SESSION['user']
-   ?>
-    <div class="container">
-        <label for="login" class="form-label">Adresse mail : </label>
-        <input type="text" class="form-control"
-               id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
-        <label for="nom" class="form-label">Nom : </label>
-        <input type="text" class="form-control"
-               id="nom" name="nom" disabled value="
-               <?php echo $leUser->getNom();?>">
-        <label for="prenom" class="form-label">Prénom : </label>
-        <input type="text" class="form-control"
-               id="prenom" name="prenom" disabled value="
-               <?php echo $leUser->getPrenom();?>">
-        <label for="naissance" class="form-label">Date de naissance : </label>
-        <input type="text" class="form-control"
-               id="datedeNaissance" name="datedeNaissance" disabled value="
-               <?php $date=$leUser->getDateDeNaissance();
-        $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
-        echo $dateN;?>">
-        <label for="sexe" class="form-label">Sexe : </label>
-        <input type="text" class="form-control"
-               id="sexe" name="sexe" disabled value="
-               <?php echo $leUser->getSexe();?>">
-        <label for="departement" class="form-label">Département : </label>
-        <input type="text" class="form-control"
-               id="departement" name="departement" disabled value="
-               <?php echo $leUser->getDepartement();?>">
-    </div>
-    <form action="Index.php" method ="POST">
-    <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
-    </form>
-
-
-    <?php
 }
 
-   }
+
    ?>
 
 

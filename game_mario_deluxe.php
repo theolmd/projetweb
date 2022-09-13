@@ -8,11 +8,23 @@
     <link rel="stylesheet" href="css/bootstrap-5.1.3-dist/css/bootstrap.css"/>
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <?php
-        include("headerConnect.php");
+    if (!empty($_SESSSION['user'])) {
+        include_once("headerConnect.php");
+    } else {
+        include_once("header.html");
+    }
+    /// créer l'objet concours avec l'id du jeu et l'objet jeu
+    include_once('RecupJeux.php');
+    $id=6;
+    $Jeu=infosJeu($id);
+    $Concours=infosConcours($Jeu);
+    ?>
     ?>
     <!-- Titre de l'onglet -->
     <title>
-        Jeu Mario Kart 8 Deluxe
+        <?php
+        $Nom = $Jeu->getNomJeu();
+        echo $Nom;?>
     </title>
 </head>
 
@@ -23,7 +35,7 @@
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
 
             <h3 id="sfTitle">
-                Mario Kart 8 Deluxe
+                <?php echo $Nom;?>
             </h3>
         </div>
     </div>
@@ -50,11 +62,10 @@
             <div id="sfGameDesc" class="container">
                 <img src="img/mario1.jpg" id="sfMenu">
                 <div id="sfDescGame">
-                Faites la course n’importe où, n’importe quand <br>
-                    Disputez des courses dans pas moins de 48 circuits, incluant des pistes
-                    inspirées des séries Excite Bike™ et The Legend of Zelda™.
-                    Le jeu Mario Kart 8 Deluxe a 42 personnages parmi lesquels choisir –
-                    la plus grande distribution dans la série!
+                    <?php
+                    $description = $Jeu->getDescription();
+                    echo $description;
+                    ?>
                 </div>
             </div>
     </div>
@@ -62,13 +73,35 @@
     <div class="container" id="sfGameDetail">
         <img src="img/mario2.jpg" id="sfCharSelect">
         <div id="sfGameCat">
-        Catégorie : Jeu de courses<br>
-        Date de sortie : 28 Avril 2017<br>
-        Développeur : Nintendo<br>
-        Supports : Nintendo Switch<br>
-        PEGI : 3+ <br>
-        Nombre de jeux vendus : 200 Millions <br>
-            Mode : Multijoueurs <br>
+            Catégorie : <?php
+            /// recupération des informations du jeu
+            $categ = $Jeu->getCategorie();
+            echo $categ;
+            ?><br>
+            Date de sortie : <?php
+            $date = $Jeu->getDateSortie();
+            echo $dateS = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+            ?><br>
+            Développeur : <?php
+            $dev = $Jeu->getDeveloppeur();
+            echo $dev;
+            ?><br>
+            Supports : <?php
+            $support = $Jeu->getPlateforme();
+            echo $support;
+            ?><br>
+            PEGI : <?php
+            $pegi = $Jeu->getPegi();
+            echo $pegi;
+            ?><br>
+            Nombre de jeux vendus : <?php
+            $nbVendus = $Jeu->getNbJeuxVendus();
+            echo $nbVendus;
+            ?> <br>
+            Mode : <?php
+            $mode = $Jeu->getMode();
+            echo $mode;
+            ?> <br>
         </div>
     </div>
 
@@ -83,18 +116,70 @@
         </H2>
         <div class="container">
             <div id="sfTournoiDesc">
-                Règles : <br>
-                Un grand prix (4 courses), 4 poules de 12 joueurs.<br>
-                Les 3 premiers gagnants de chaque poule accèdent à la finale. <br>
-                Nombre de participants : 48
+                <table>
+                    <tr>
+                        <td id="table1"><strong>Objectif</strong></td>
+                        <td id="table"><?php
+                            $Objectif = $Concours->getObjectif();
+                            echo $Objectif;
+                            ?></td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Mode de jeu</strong></td>
+                        <td id="table"><?php
+                            $Mode = $Concours->getModeDeJeu();
+                            echo $Mode;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Règles</strong></td>
+                        <td id="table"><?php
+                            $Regles = $Concours->getRegles();
+                            echo $Regles;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Nombre de participants</strong></td>
+                        <td id="table"><?php
+                            $nbJoueur = $Concours->getNbMaxJoueur();
+                            echo $nbJoueur;?> </td>
+                    </tr> <tr>
+                        <td id="table1"> <strong>Nombre de gagnants</strong></td>
+                        <td id="table"><?php
+                            $nbGagnant = $Concours->getNbGagnant();
+                            echo $nbGagnant;?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Les gains</strong></td>
+                        <td id="table"> <?php $gain = $Concours->getGain();
+                            echo $gain;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Le vote débute le</strong></td>
+                        <td id="table"> <?php
+                            $dateDebut = $Concours->getDateDeDebut();
+                            echo $dateD = DateTime::createFromFormat('Y-m-d', $dateDebut)
+                                ->format('d/m/Y');
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Et il se termine le</strong></td>
+                        <td id="table"><?php
+                            $dateFin = $Concours->getDateDeFin();
+                            echo $dateF = DateTime::createFromFormat('Y-m-d', $dateFin)
+                                ->format('d/m/Y');;
+                            ?></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 
     <div>
         <button class="btn" id="btnVote">
-            <a href="vote_choices.php">
-                Je vote !
+            <a href="login_connect.php">
+                Je veux voter !
             </a>
         </button>
     </div>

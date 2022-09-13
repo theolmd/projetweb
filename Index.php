@@ -38,21 +38,22 @@ $Jeu3=infosJeu($id);
 $id=9;
 $Jeu4=infosJeu($id);
 ?>
-<body>
-    <H1>
-        Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
-    </H1>
-    </div>
-</div>
+
 
     <?php
     if($_POST['deconnexion']="deconnexion")
     {
         $_SESSION['user']=NULL;
+        include_once("header.html");
     }
 
     ?>
-
+    <body>
+    <H1>
+        Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
+    </H1>
+    </div>
+    </div>
 <!-- Création d'un carrousel avec les images -->
 <div id="presentationJeux" class="container">
         <H2>
