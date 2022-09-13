@@ -38,7 +38,12 @@ if(!empty($_SESSION['user']))
                     <li><a href="game_eldenring.php">Elden Ring</a></li>
                 </ul>
             </li>
-            <li><a href="profile.php">Mon profil</a></li>
+            <li class="deroulant"><a href="#"> Espace membre &ensp;</a>
+                <ul class="sous">
+                    <li><a href="profile.php"> Mes informations </a></li>
+                </ul>
+            </li>
+            </li>
             <li><a href="vote_choices.php">Les votes</a></li>
             <li><a href="Contact.php">Contact</a></li>
         </ul>

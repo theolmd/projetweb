@@ -103,7 +103,7 @@ class Concours_crud
         try {
             $requete->execute();
             $result = $requete->fetch(PDO::FETCH_OBJ);
-            if (empty($result)) {
+            if ($result = NULL) {
                 $verif=true;
         } else {
                 $verif = false;}}
