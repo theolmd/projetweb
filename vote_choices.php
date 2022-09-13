@@ -29,14 +29,15 @@ $Jeux1=infosJeu(6);
 $Jeux2=infosJeu(7);
 $Jeux3=infosJeu(8);
 $Jeux4=infosJeu(9);
-if(!empty($_SESSION['user']))
+
+if(isset($_SESSION['user']))
 {
-    $unUser=$_SESSION['user'];
-    $idUser=$unUser->getId();
+$unUser=$_SESSION['user'];
+$idUser=$unUser->getId();
     $CRUD_Concours= new concours_crud($connexion);
     $verif=$CRUD_Concours->verifVote($idUser);
 
-    if($verif=false){ ?>
+    if($verif=true){ ?>
         <H1> Tu as déjà voté ! Reviens l'année prochaine pour un autre vote ! </H1>
     <?php }
     else { ?>
