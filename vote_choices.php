@@ -14,7 +14,8 @@
     </title>
 </head>
 <?php
-include("header.php");
+
+
 include_once ("lib\user_Crud.php");
 include_once ("lib\User.php");
 include_once ("lib\Concours.php");
@@ -25,6 +26,7 @@ include_once("RecupJeux.php");
 session_start();
 $connexion = connexion();
 if (is_a($connexion,  "PDO")){
+
 $Jeux1=infosJeu(6);
 $Jeux2=infosJeu(7);
 $Jeux3=infosJeu(8);
@@ -32,6 +34,7 @@ $Jeux4=infosJeu(9);
 
 if(isset($_SESSION['user']))
 {
+include_once("headerConnect.php");
 $unUser=$_SESSION['user'];
 $idUser=$unUser->getId();
     $CRUD_Concours= new concours_crud($connexion);
@@ -60,7 +63,8 @@ $idUser=$unUser->getId();
        <?php }
 
         }
-else { ?>
+else {     include_once("header.html");
+    ?>
         <H1> Pour voter il faut te connecter ! </H1>
         <form action ="login_connect.php" >
             <button class="btn-primary"> Se connecter </button> </form>

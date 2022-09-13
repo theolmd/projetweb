@@ -13,7 +13,7 @@
     </title>
 </head>
 <?php
-include("header.php");
+    include_once("headerConnect.php");
 include_once("lib\User_crud.php");
 include_once("connexion.php");
 include_once("lib\user.php");?>
@@ -23,7 +23,6 @@ include_once("lib\user.php");?>
 <?php
 session_start();
 $connexion = connexion();
-$leUser=$_SESSION['user'];
 if (is_a($connexion,  "PDO")) {
     if (!empty($_POST['login'])) /// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
         {
@@ -32,10 +31,10 @@ if (is_a($connexion,  "PDO")) {
             exit();}
 
         else {
-             $crudUser = new user_Crud($connexion);
+
+$crudUser = new user_Crud($connexion);
              $leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
-                 if(!($leUser==null)) {
-                     $_SESSION['user'] = $leUser ?>
+$_SESSION['user']=$leUser;?>
 
                          <div class="container">
                 <label for="login" class="form-label">Adresse mail : </label>
@@ -64,7 +63,8 @@ if (is_a($connexion,  "PDO")) {
                    id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
 
-   <?php  }}} if(!empty($_POST['enregistrer'])) {
+   <?php  }}
+    if(!empty($_POST['enregistrer'])) {
 
         $nouvUser = new User($_POST['nom'],$_POST['prenom'],
             $_POST['mail'],$_POST['dateNaissance'],$_POST['sexe'],$_POST['departement'],$_POST['mdp']);
@@ -121,7 +121,8 @@ if (is_a($connexion,  "PDO")) {
         </div>
                     <button type="submit"onclick="function deconnexion()">Se déconnecter</button>
 <?php } }
-if (isset($leUser)) {
+if (empty($_POST['login']) OR (empty($_POST['enregistrer'])))
+{ $leUser=$_SESSION['user']
    ?>
     <div class="container">
         <label for="login" class="form-label">Adresse mail : </label>
@@ -150,7 +151,9 @@ if (isset($leUser)) {
                id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
     </div>
-    <button type="submit"onclick="function deconnexion()">Se déconnecter</button>
+    <form action="Index.php" method ="POST">
+    <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+    </form>
 
 
     <?php

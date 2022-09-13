@@ -14,7 +14,7 @@
     </title>
 </head>
 <?php
-include("header.php")
+include("header.html")
 ?>
 
 <!-- Page de connexion -->

@@ -16,11 +16,19 @@
     </title>
 </head>
 <?php
-
-include_once("header.php");
+if (!empty($_SESSSION['user'])) {
+    include_once("headerConnect.php");
+} else {
+    include_once("header.html");
+}
 include_once('RecupJeux.php');
+include_once('lib\User_crud.php');
+include_once("connexion.php");
+
 session_start();
 session_destroy();
+
+$connexion=connexion();
 $id=6;
 $Jeu1=infosJeu($id);
 $id=8;
@@ -36,6 +44,14 @@ $Jeu4=infosJeu($id);
     </H1>
     </div>
 </div>
+
+    <?php
+    if($_POST['deconnexion']="deconnexion")
+    {
+        $_SESSION['user']=NULL;
+    }
+
+    ?>
 
 <!-- Création d'un carrousel avec les images -->
 <div id="presentationJeux" class="container">

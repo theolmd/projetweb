@@ -14,7 +14,7 @@
     </title>
 </head>
 <?php
-include("header.php");
+include("headerConnect.php");
 include_once ("lib\user_Crud.php");
 include_once ("lib\User.php");
 include_once ("lib\Concours.php");

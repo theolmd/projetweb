@@ -14,7 +14,7 @@
     </title>
 </head>
 <?php
-include("header.php")
+include("header.html")
 ?>
 <h1> Créer un compte </h1>
 <!-- Page de création de compte -->
