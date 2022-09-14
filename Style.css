@@ -318,6 +318,30 @@ form button {
 
 #sfTournoiDesc{
     background-color: orange;
+    color: white;
+    padding:20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+#btnVote{
+    border: 2px solid orange;
+    background-color: orange;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+}
+
+
+#cutLine {
+    color: orange;
+    border: solid 3px;
+}
+
+#sfTournoiDesc{
+    background-color: orange;
     table-layout: fixed;
     color: white;
     padding:20px;

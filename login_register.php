@@ -10,50 +10,18 @@
 
     <!-- Titre de l'onglet -->
     <title>
-        Créer un compte
+        Page de login
     </title>
 </head>
 <?php
-include("header.html")
+include("header.php")
 ?>
-<h1> Créer un compte </h1>
-<!-- Page de création de compte -->
-
-<div class="container">
-    <form action ="profile.php" method="POST">
-        <label for="nom" class="form-label"><b>Nom</b></label>
-        <input type="text" class="form-control" name="nom" >
-        <label for="prenom" class="form-label"><b>Prénom</b></label>
-        <input type="text" class="form-control" name="prenom" >
-
-        <label for="email" class="form-label"><b>Email *</b></label>
-        <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
-        <label for="psw" class="form-label"><b>Mot de passe *</b></label>
-        <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
-        <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
-        <input type="date" class="form-control" name="dateNaissance" >
-        <label for="sexe" class="form-label"><b>Sexe </b></label>
-        <select name="sexe" id="sexe">
-            <option value="">--Choisissez une option--</option>
-            <option value="F">F</option>
-            <option value="M">M</option>
-            <option value="Autres">Autre</option>
-        </select> <br>
-        <label for="departement" class="form-label"><b>Département</b></label>
-        <input type="text" class="form-control" name="departement" >
-
-
-        <button type="submit" name="enregistrer" value="enregistrer" id="enregistrer" >S'enregistrer </button>
-
-        <p> * Les champs sont obligatoires. </p>
-
-</div>
-</form>
 
 <body>
 
 </body>
 
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<img id="banniere" src="img/banniere_16.png">
+
 </html>

@@ -87,6 +87,31 @@ $Concours=infosConcours($Jeu);
         </H2>
         <div class="container">
             <div id="sfTournoiDesc">
+                Règles : <br>
+                Combats en 1 contre 1.<br>
+                3 match pour 1 round.<br>
+                Gagner les 5 rounds puis la finale.<br>
+                Nombre de participants : 32
+            </div>
+        </div>
+    </div>
+
+<div>
+    <button class="btn" id="btnVote">
+        <a href="vote_choices.php">
+            Je vote !
+        </a>
+    </button>
+</div>
+
+
+
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
                 <table>
                     <tr>
                         <td id="table1"><strong>Objectif</strong></td>

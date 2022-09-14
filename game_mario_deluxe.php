@@ -116,6 +116,31 @@
         </H2>
         <div class="container">
             <div id="sfTournoiDesc">
+                Règles : <br>
+                Un grand prix (4 courses), 4 poules de 12 joueurs.<br>
+                Les 3 premiers gagnants de chaque poule accèdent à la finale. <br>
+                Nombre de participants : 48
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn" id="btnVote">
+            <a href="vote_choices.php">
+                Je vote !
+            </a>
+        </button>
+    </div>
+
+
+    <!--Container tournois-->
+
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
                 <table>
                     <tr>
                         <td id="table1"><strong>Objectif</strong></td>

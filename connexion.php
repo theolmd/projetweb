@@ -1,9 +1,8 @@
 <?php
 define("SERVEUR", "localhost");
-define("USER", "root");
+define("USER", "SioPhpSlam");
 define("PWD", "");
 define("BDD", "bdd_projet");
-
 function connexion()
 {
     try {

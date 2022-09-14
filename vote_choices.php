@@ -14,66 +14,17 @@
     </title>
 </head>
 <?php
-
-
-include_once ("lib\user_Crud.php");
-include_once ("lib\User.php");
-include_once ("lib\Concours.php");
-include_once ("lib\Concours_crud.php");
-include_once("lib\Jeux_crud.php");
-include_once("connexion.php");
-include_once("RecupJeux.php");
-session_start();
-$connexion = connexion();
-if (is_a($connexion,  "PDO")){
-
-$Jeux1=infosJeu(6);
-$Jeux2=infosJeu(7);
-$Jeux3=infosJeu(8);
-$Jeux4=infosJeu(9);
-
-if(isset($_SESSION['user']))
-{
-include_once("headerConnect.php");
-$unUser=$_SESSION['user'];
-$idUser=$unUser->getId();
-    $CRUD_Concours= new concours_crud($connexion);
-    $verif=$CRUD_Concours->verifVote($idUser);
-
-    if($verif=true){ ?>
-        <H1> Tu as déjà voté ! Reviens l'année prochaine pour un autre vote ! </H1>
-    <?php }
-    else { ?>
-
-<body>
-<h1> Vote pour le tournoi que tu préfères ! </h1>
-<legend> Je vote pour </legend>
-<form action="vote.php" method="POST">
-
-                <input type="radio" name="Choice1" value="6" checked>
-                <label for="Choice1"> <?php echo $Jeux1->GetNomjeu() ?></label>
-                <input type="radio" name="Choice1" value="7">
-                <label for="Choice2"><?php echo $Jeux2->GetNomjeu() ?></label>
-                <input type="radio" name="Choice1" value="8">
-                <label for="Choice3"><?php echo $Jeux3->GetNomjeu() ?></label>
-                <input type="radio" name="Choice1" value="9">
-               <label for="Choice3"><?php echo $Jeux4->GetNomjeu() ?></label>
-                <button onclick="vote()" type="submit" >Voter</button>
-        </form>
-       <?php }
-
-        }
-else {     include_once("header.html");
-    ?>
-        <H1> Pour voter il faut te connecter ! </H1>
-        <form action ="login_connect.php" >
-            <button class="btn-primary"> Se connecter </button> </form>
-        <form action ="login_register.php" >
-            <button class="btn-secondary">S'enregister</button> </form>
-
-<?php }
-      }
+include("header.php")
 ?>
 
+<body>
+
+    <container>
+        <img>
+    </container>
+
 </body>
+<!-- Bannière de pied de page -->
+<img id="banniere" src="img/banniere_16.png">
+
 </html>
