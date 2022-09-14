@@ -8,24 +8,32 @@
     <link rel="stylesheet" href="css/bootstrap-5.1.3-dist/css/bootstrap.css"/>
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
 
-    <!-- Titre de l'onglet -->
-    <title>
-        Jeu Les Sims 4
-    </title>
-</head>
 
 
-<body>
 <?php
-include("header.php")
-?>
+if (!empty($_SESSSION['user'])) {
+    include_once("headerConnect.php");
+} else {
+    include_once("header.html");
+}
+/// créer l'objet concours avec l'id du jeu et l'objet jeu
+include_once('RecupJeux.php');
+$id=8;
+$Jeu=infosJeu($id);
+$Concours=infosConcours($Jeu);
+?>    <!-- Titre de l'onglet -->
+    <title>
+        <?php
+        $Nom = $Jeu->getNomJeu();
+        echo $Nom;?>
+</title>
+</head>
+<body>
+    ?>
     <!-- Division en 2 du containeur avec à gauche le logo et à droite le titre -->
-    <div class="container">
-        <img id="logo" src="145e7a2579034ad5a9924f4da9f494c5%20(1).png">
 
-        <div>
             <h3 id="sfTitle">
-                Les Sims 4
+                <?php echo $Nom;?>
             </h3>
         </div>
     </div>
@@ -50,32 +58,131 @@ include("header.php")
                 Description du jeu :
             </H2>
             <div id="sfGameDesc" class="container">
-                <img src="sims2.jpg" id="sfMenu">
+                <img src="img/sims2.jpg" id="sfMenu">
                 <div id="sfDescGame">
-                    Libérez votre imagination et créez un monde de Sims unique qui vous ressemble ! <br>
-                    Explorez et personnalisez les moindres détails de vos Sims et de vos maisons, et bien plus encore.
-                    Concevez et construisez des maisons incroyables pour chaque famille. Jouez avec la vie !
+                    <?php
+                    $description = $Jeu->getDescription();
+                    echo $description;
+                    ?>
                 </div>
             </div>
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="sims1.jpg" id="sfSims">
+        <img src="img/sims1.jpg" id="sfSims">
         <div id="sfGameCat">
-        Catégorie : Jeu de simulation<br>
-        Date de sortie : 2 septembre 2014<br>
-        Développeur :  Eric Holmberg-Weidler, Matt Yang<br>
-        Supports :  PlayStation 4, Xbox One, Mac OS, Microsoft Windows <br>
-        PEGI : 12+ <br>
-        Nombre de jeux vendus : 200 Millions <br>
-            Mode : Solo <br>
+        Catégorie : <?php
+            /// recupération des informations du jeu
+            $categ = $Jeu->getCategorie();
+            echo $categ;
+            ?><br>
+            Date de sortie : <?php
+            $date = $Jeu->getDateSortie();
+            echo $dateS = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');
+            ?><br>
+            Développeur : <?php
+            $dev = $Jeu->getDeveloppeur();
+            echo $dev;
+            ?><br>
+            Supports : <?php
+            $support = $Jeu->getPlateforme();
+            echo $support;
+            ?><br>
+            PEGI : <?php
+            $pegi = $Jeu->getPegi();
+            echo $pegi;
+            ?><br>
+            Nombre de jeux vendus : <?php
+            $nbVendus = $Jeu->getNbJeuxVendus();
+            echo $nbVendus;
+            ?> <br>
+            Mode : <?php
+            $mode = $Jeu->getMode();
+            echo $mode;
+            ?> <br>
         </div>
     </div>
 
 
+        <!--Container tournois-->
+
+    <div class="container">
+        <H2 id="sfTitleDesc">
+            Le tournoi :
+        </H2>
+        <div class="container">
+            <div id="sfTournoiDesc">
+                <table>
+                    <tr>
+                        <td id="table1"><strong>Objectif</strong></td>
+                        <td id="table"><?php
+                            $Objectif = $Concours->getObjectif();
+                            echo $Objectif;
+                            ?></td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Mode de jeu</strong></td>
+                        <td id="table"><?php
+                            $Mode = $Concours->getModeDeJeu();
+                            echo $Mode;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Règles</strong></td>
+                        <td id="table"><?php
+                            $Regles = $Concours->getRegles();
+                            echo $Regles;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Nombre de participants</strong></td>
+                        <td id="table"><?php
+                            $nbJoueur = $Concours->getNbMaxJoueur();
+                            echo $nbJoueur;?> </td>
+                    </tr> <tr>
+                        <td id="table1"> <strong>Nombre de gagnants</strong></td>
+                        <td id="table"><?php
+                            $nbGagnant = $Concours->getNbGagnant();
+                            echo $nbGagnant;?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Les gains</strong></td>
+                        <td id="table"> <?php $gain = $Concours->getGain();
+                            echo $gain;
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Le vote débute le</strong></td>
+                        <td id="table"> <?php
+                            $dateDebut = $Concours->getDateDeDebut();
+                            echo $dateD = DateTime::createFromFormat('Y-m-d', $dateDebut)
+                                ->format('d/m/Y');
+                            ?> </td>
+                    </tr>
+                    <tr>
+                        <td id="table1"> <strong>Et il se termine le</strong></td>
+                        <td id="table"><?php
+                            $dateFin = $Concours->getDateDeFin();
+                            echo $dateF = DateTime::createFromFormat('Y-m-d', $dateFin)
+                                ->format('d/m/Y');;
+                            ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button class="btn" id="btnVote">
+            <a href="login_connect.php">
+                Je veux voter !
+            </a>
+        </button>
+    </div>
+
 
 </body>
 <!-- Bannière de pied de page -->
-<img id="banniere" src="banniere_16.png">
+<img id="banniere" src="img/banniere_16.png">
 
 </html>
