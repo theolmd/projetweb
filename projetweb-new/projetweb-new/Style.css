@@ -1,0 +1,192 @@
+/*mise en forme du titre*/
+
+H1{
+    text-align: center;
+    color: white;
+    padding: 6% 0% 0% 0%;
+    text-decoration: solid;
+}
+
+#middleplane
+{
+    margin-left: 6%;
+    padding: 4% ;
+
+}
+/*mise en forme du carrousel*/
+#presentationJeux
+{
+    border: 2px deepskyblue solid;
+    padding:4%;
+    clear: both;
+    margin-left: 6%;
+    margin-top: 6%;
+}
+/*mise en forme du block d'explication*/
+#explication
+{
+    border: 2px deepskyblue solid;
+    padding:20px 100px 60px 20px;
+    clear: both;
+    margin-left: 130px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+H2
+{
+    text-align: left;
+    color: darkorange;
+    font-family: "Noto Sans";
+    text-decoration: underline;
+}
+#texte
+{
+    margin-left: 185px;
+    padding: 20px ;
+    margin-top: 30px;
+    text-align: justify;
+}
+#image
+{
+    width: 180px;
+    float: left;
+    padding: 20px;
+}
+
+
+/* PARTIE STREET FIGHTER */
+#sfTitle{
+    color: orange;
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 50px;
+    padding: 20px;
+}
+    /* Container Video */
+#gameVideo{
+    margin-left: 100px;
+    border: orange solid 3px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 50px;
+}
+#sfVideo{
+    border: solid 5px orange;
+    margin-left: 20px;
+}
+#sfVideoScnd{
+    margin-left: 50px;
+    border: solid 5px orange;
+}
+#sfDemoTitle{
+    color:black;
+    margin-top: 50px;
+    margin-left: 200px;
+}
+    /* Container description du jeu */
+#sfTitleDesc{
+    color:black;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+#sfMenu{
+    width: 30%;
+    height: 30%;
+}
+#sfGameDesc{
+    background-color: orange;
+    color: white;
+    padding:20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+#sfDescGame{
+    float: left;
+    margin-top: 20px;
+    margin-left: 100px;
+    width: 40%;
+    font-size: 20px;
+}
+    /* Container details du jeu */
+#sfGameDetail{
+    border: orange solid 3px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 50px;
+}
+#sfCharSelect{
+    width: 40%;
+    height: 40%;
+}
+#sfGameCat{
+    float: right;
+    margin-top: 50px;
+    margin-right: 170px;
+    font-size: 20px;
+}
+#sfSims{
+    width:35%;
+    height:35%;
+}
+#sfElden{
+    width: 25%;
+    height:25%;
+    margin-right: 170px;
+    float:left;
+}
+/*mise en forme du formulaire de contact */
+.contactez-nous {
+    width: 700px;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 0 50px 0 50px;
+    background: white;
+    margin-left: 100px;
+}
+
+.contactez-nous > h1 {
+    font-weight: 500;
+}
+
+.contactez-nous > p {
+    font-weight: 300;
+}
+
+
+#cutLine {
+    color: orange;
+    border: solid 3px;
+}
+
+#sfTournoiDesc{
+    background-color: orange;
+    table-layout: fixed;
+    color: white;
+    padding:20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+#table{
+    border-collapse : collapse;
+    border: 1px solid black;
+    padding: 5px;
+    size: auto;
+}
+#table1{
+    border-collapse : collapse;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+#btnVote{
+    border: 2px solid orange;
+    background-color: orange;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+}
+
