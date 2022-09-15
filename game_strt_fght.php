@@ -1,4 +1,18 @@
-<html>
+<?php
+include_once('lib\Jeux.php');
+include_once('lib\Concours.php');
+require_once("connexion.php");
+include_once("RecupJeux.php");
+include_once ("lib\user_Crud.php");
+include_once ("lib\User.php");
+session_start();
+$connexion=connexion();
+/// créer l'objet concours avec l'id du jeu et l'objet jeu
+if (isset($_SESSION['user'])) {
+    include_once("headerConnect.php");
+} else {
+    include_once("navbarre.php");
+}?><html>
 <head>
     <link rel="stylesheet" type="text/css" href="Style.css" />
     <meta charset="utf-8">
@@ -12,13 +26,7 @@
 
 <body>
 <?php
-if (isset($_SESSSION['user'])) {
-    include_once("headerConnect.php");
-} else {
-    include_once("header.html");
-}
 /// créer l'objet concours avec l'id du jeu et l'objet jeu
-include_once('RecupJeux.php');
 $id=7;
 $Jeu=infosJeu($id);
 $Concours=infosConcours($Jeu);

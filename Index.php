@@ -1,3 +1,13 @@
+<?php
+include_once("lib\jeux.php");
+include_once ("lib\user_Crud.php");
+include_once ("lib\User.php");
+include_once("RecupJeux.php");
+include_once ("lib\Concours_crud.php");
+include_once("lib\Jeux_crud.php");
+include_once("connexion.php");
+session_start();
+$connexion=connexion();?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Style.css" />
@@ -16,19 +26,17 @@
     </title>
 </head>
 <?php
-if (!empty($_SESSSION['user'])) {
+if (!empty($_POST['deconnexion']))
+{
+    $_SESSION['user']=null;
+    session_destroy();
+}/// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
+
+if (isset($_SESSION['user'])) {
     include_once("headerConnect.php");
 } else {
-    include_once("header.html");
+    include_once("navbarre.php");
 }
-include_once('RecupJeux.php');
-include_once('lib\User_crud.php');
-include_once("connexion.php");
-
-session_start();
-session_destroy();
-
-$connexion=connexion();
 $id=6;
 $Jeu1=infosJeu($id);
 $id=8;
@@ -38,21 +46,12 @@ $Jeu3=infosJeu($id);
 $id=9;
 $Jeu4=infosJeu($id);
 ?>
-
-
-    <?php
-    if($_POST['deconnexion']="deconnexion")
-    {
-        $_SESSION['user']=NULL;
-        include_once("header.html");
-    }
-
-    ?>
     <body>
+    <section class="heroe">
+
     <H1>
         Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
     </H1>
-    </div>
     </div>
 <!-- Création d'un carrousel avec les images -->
 <div id="presentationJeux" class="container">
@@ -141,6 +140,8 @@ $Jeu4=infosJeu($id);
     </p>
     </div>
 </div>
+    </section>
 </body>
+
 </html>
 <?php include_once("Footer.php")?>

@@ -1,5 +1,4 @@
 <?php
-include_once("Jeux_CRUD.php");
 class Jeux
 {
     private int $Idjeux;
@@ -232,4 +231,5 @@ class Jeux
     {
         $this->mode = $mode;
     }
+
 }

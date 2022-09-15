@@ -14,31 +14,21 @@
 </title>
 </head>
 
-<body>
-<!-- Ajout de la bannière -->
-
-        <img id="banniere" src="img/banniere_16.png">
 
 <!-- Création de la barre de navigation avec une liste et une sous liste -->
-        <nav>
-            <ul>
-                <li> <a href="Index.php">Accueil &ensp;</a></li>
-                <li class="deroulant"><a href="#">Les Jeux &ensp;</a>
-                    <ul class="sous">
-                        <li><a href="#">Mario Kart 8 Deluxe </a></li>
-                        <li><a href="#">Les Sims 4</a></li>
-                        <li><a href="game_strt_fght.php">Street Fighter V</a></li>
-                        <li><a href="#">Elden Ring</a></li>
-                    </ul>
-                </li>
-                <li><a href="Contact.php">Contact</a></li>
-            </ul>
-        </nav>
-<div class="container">
-    <img id="logo" src="145e7a2579034ad5a9924f4da9f494c5%20(1).png">
-    <div id="middleplane">
+       <?php
+       if (!empty($_SESSSION['user'])) {
+           include_once("headerConnect.php");
+       } else {
+           include_once("navbarre.php");
+       }
+       include_once('lib\User_crud.php');
+       include_once("connexion.php");
 
+       session_start();
+       ?>
 
+<body>
         <div class="contactez-nous">
             <h1>Contactez-nous</h1>
             <p>Un problème, une question, envie de nous envoyer un message ?
@@ -68,6 +58,7 @@
         </div>
 </div>
 </div>
+</body>
 
 <img id="banniere" src="img/banniere_16.png">
 

@@ -1,3 +1,22 @@
+<?php
+include_once('lib\Jeux.php');
+include_once('lib\Concours.php');
+require_once("connexion.php");
+include_once("RecupJeux.php");
+include_once ("lib\user_Crud.php");
+include_once ("lib\User.php");
+session_start();
+$connexion=connexion();
+/// créer l'objet concours avec l'id du jeu et l'objet jeu
+if (isset($_SESSION['user'])) {
+    include_once("headerConnect.php");
+} else {
+    include_once("navbarre.php");
+}
+$id=9;
+$Jeu=infosJeu($id);
+$Concours=infosConcours($Jeu);
+?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Style.css" />
@@ -7,26 +26,16 @@
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
     <link rel="stylesheet" href="css/bootstrap-5.1.3-dist/css/bootstrap.css"/>
     <script src="css/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
-    <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
-    <?php
-    if (!empty($_SESSSION['user'])) {
-        include_once("headerConnect.php");
-    } else {
-        include_once("header.html");
-    }
-/// créer l'objet concours avec l'id du jeu et l'objet jeu
-    include_once('RecupJeux.php');
-    $id=9;
-    $Jeu=infosJeu($id);
-    $Concours=infosConcours($Jeu);
-    ?>
     <!-- Titre de l'onglet -->
     <title>
         <?php
         $Nom = $Jeu->getNomJeu();
-               echo $Nom;?>
+        echo $Nom;?>
     </title>
 </head>
+    <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
+
+
 
 
 <body>

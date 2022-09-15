@@ -1,3 +1,16 @@
+<?php
+
+
+include_once ("lib\user_Crud.php");
+include_once ("lib\User.php");
+include_once ("lib\Concours.php");
+include_once ("lib\Concours_crud.php");
+include_once("lib\Jeux_crud.php");
+include_once("lib\jeux.php");
+include_once("connexion.php");
+include_once("RecupJeux.php");
+session_start();
+$connexion = connexion();?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Style.css" />
@@ -14,17 +27,6 @@
     </title>
 </head>
 <?php
-
-
-include_once ("lib\user_Crud.php");
-include_once ("lib\User.php");
-include_once ("lib\Concours.php");
-include_once ("lib\Concours_crud.php");
-include_once("lib\Jeux_crud.php");
-include_once("connexion.php");
-include_once("RecupJeux.php");
-session_start();
-$connexion = connexion();
 if (is_a($connexion,  "PDO")){
 
 $Jeux1=infosJeu(6);
@@ -63,7 +65,7 @@ $idUser=$unUser->getId();
        <?php }
 
         }
-else {     include_once("header.html");
+else {     include_once("navbarre.php");
     ?>
         <H1> Pour voter il faut te connecter ! </H1>
         <form action ="login_connect.php" >

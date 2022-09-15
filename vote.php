@@ -15,13 +15,13 @@
 </head>
 <?php
 include("headerConnect.php");
+include_once("lib\jeux.php");
 include_once ("lib\user_Crud.php");
 include_once ("lib\User.php");
 include_once ("lib\Concours.php");
 include_once ("lib\Concours_crud.php");
 include_once("lib\Jeux_crud.php");
 include_once("connexion.php");
-include_once("RecupJeux.php");
 ?>
 
 

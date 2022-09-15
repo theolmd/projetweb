@@ -1,3 +1,10 @@
+<?php
+include_once("headerConnect.php");
+include_once("lib\User_crud.php");
+include_once("connexion.php");
+include_once("lib\user.php");
+session_start();
+$connexion = connexion();;?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="Style.css" />
@@ -12,20 +19,14 @@
         Mon profil
     </title>
 </head>
-<?php
-    include_once("headerConnect.php");
-include_once("lib\User_crud.php");
-include_once("connexion.php");
-include_once("lib\user.php");?>
 <h1>        Mon profil et mes informations
 </h1>
 <body>
 <?php
-session_start();
-$connexion = connexion();
 if (is_a($connexion,  "PDO")) {
 if (isset($_SESSION['user']))
-{ $leUser=$_SESSION['user']
+{ $leUser=$_SESSION['user'];
+    $_SESSION['user']=$leUser
     ?>
     <div class="container">
         <label for="login" class="form-label">Adresse mail : </label>
@@ -69,9 +70,9 @@ if (isset($_SESSION['user']))
 
         else {
 
-$crudUser = new user_Crud($connexion);
+            $crudUser = new user_Crud($connexion);
              $leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
-$_SESSION['user']=$leUser;?>
+             $_SESSION['user']=$leUser;?>
 
                          <div class="container">
                 <label for="login" class="form-label">Adresse mail : </label>
@@ -99,6 +100,9 @@ $_SESSION['user']=$leUser;?>
             <input type="text" class="form-control"
                    id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
+                             <form action="Index.php" method ="POST">
+                                 <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+                             </form>
 
    <?php  }}
     if(!empty($_POST['enregistrer'])) {
@@ -125,7 +129,7 @@ $_SESSION['user']=$leUser;?>
                 else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
                     $crudUser = new user_Crud($connexion);
                     $leUser = $crudUser->insertUser($nouvUser);
-                    $_SESSION["user"] = $leUser; ?>
+                    $_SESSION['user'] = $leUser; ?>
 
 
 
@@ -156,7 +160,9 @@ $_SESSION['user']=$leUser;?>
                    id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
         </div>
-                    <button type="submit"onclick="function deconnexion()">Se déconnecter</button>
+                    <form action="Index.php" method ="POST">
+                        <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+                    </form>
 <?php } }
 }
 

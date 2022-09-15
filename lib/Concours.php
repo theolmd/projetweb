@@ -225,5 +225,4 @@ class Concours
     {
         $this->idJeu = $idJeu;
     }
-
 }
