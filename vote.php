@@ -10,7 +10,7 @@
 
     <!-- Titre de l'onglet -->
     <title>
-        Merci
+        Ton vote
     </title>
 </head>
 <?php
@@ -38,3 +38,5 @@ if (is_a($connexion,  "PDO")){
 }}?>
 
 <h1>Merci d'avoir voté !</h1>
+
+<?php include_once ('footerConnect.php')?>

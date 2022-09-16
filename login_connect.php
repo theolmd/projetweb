@@ -23,7 +23,7 @@
 
     <!-- Titre de l'onglet -->
     <title>
-        Page de login
+        Se connecter
     </title>
 </head>
 <?php
@@ -96,6 +96,6 @@ include("navbarre.php")
     }
 </script>
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("Footer.php")?>
 
 </html>

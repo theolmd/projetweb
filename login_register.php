@@ -71,5 +71,5 @@ include("navbarre.php")
 </body>
 
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("Footer.php")?>
 </html>

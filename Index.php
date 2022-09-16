@@ -47,8 +47,6 @@ $id=9;
 $Jeu4=infosJeu($id);
 ?>
     <body>
-    <section class="heroe">
-
     <H1>
         Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
     </H1>
@@ -140,8 +138,17 @@ $Jeu4=infosJeu($id);
     </p>
     </div>
 </div>
+
     </section>
 </body>
 
 </html>
-<?php include_once("Footer.php")?>
+
+<footer>
+    <?php
+    if (isset($_SESSION['user'])) {
+    include_once("footerConnect.php");
+    } else {
+    include_once("Footer.php");
+    } ?>
+</footer>

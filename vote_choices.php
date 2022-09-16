@@ -27,13 +27,14 @@ $connexion = connexion();?>
     </title>
 </head>
 <?php
+/// si la connexion est ok ajouter les jeux
 if (is_a($connexion,  "PDO")){
 
 $Jeux1=infosJeu(6);
 $Jeux2=infosJeu(7);
 $Jeux3=infosJeu(8);
 $Jeux4=infosJeu(9);
-
+/// si le joueur est connecté, vérifier s'il a déjà voté
 if(isset($_SESSION['user']))
 {
 include_once("headerConnect.php");
@@ -63,7 +64,7 @@ $idUser=$unUser->getId();
                 <button onclick="vote()" type="submit" >Voter</button>
         </form>
        <?php }
-
+/// si le user n'est pas connecté lui dire de se connecter
         }
 else {     include_once("navbarre.php");
     ?>
@@ -79,3 +80,12 @@ else {     include_once("navbarre.php");
 
 </body>
 </html>
+<footer>
+    <!-- Pied de page -->
+    <?php
+    if (isset($_SESSION['user'])) {
+        include_once("footerConnect.php");
+    } else {
+        include_once("Footer.php");
+    } ?>
+</footer>

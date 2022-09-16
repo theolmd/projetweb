@@ -161,7 +161,8 @@ if (isset($_SESSION['user']))
                <?php echo $leUser->getDepartement();?>">
         </div>
                     <form action="Index.php" method ="POST">
-                        <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+                        <button class ="deco" type="submit" name="deconnexion" value="deconnexion">
+                            Se déconnecter</button>
                     </form>
 <?php } }
 }
@@ -179,6 +180,6 @@ if (isset($_SESSION['user']))
 </html>
 
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("footerConnect.php")?>
 
 
