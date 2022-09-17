@@ -1,7 +1,7 @@
 <?php
-define("SERVEUR", "localhost");
+define("SERVEUR", "localhost:3307");
 define("USER", "root");
-define("PWD", "");
+define("PWD", "root");
 define("BDD", "bdd_projet");
 
 function connexion()

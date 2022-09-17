@@ -163,6 +163,10 @@ if (isset($_SESSION['user']))
                     <form action="Index.php" method ="POST">
                         <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
                     </form>
+
+                    <form action="Index.php" method="GET">
+                        <button type="button" name="deleteModal" value="deleteUser">Supprimer</button>
+                    </form>
 <?php } }
 }
 
