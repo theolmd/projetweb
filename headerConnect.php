@@ -28,7 +28,6 @@
             <li class="deroulant"><a href="#">Mon profil &ensp;</a>
                 <ul class="sous">
                     <li><a href="profile.php">Mes informations</a></li>
-                    <li><a href="game_sims.php">Mon vote</a></li>
                     <li> <form action="Index.php" method ="POST">
                             <button class="btn" type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
                         </form></li>
