@@ -78,7 +78,7 @@ $Concours=infosConcours($Jeu);
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="img/sheesh.jpg" id="sfCharSelect">
+        <img src="img/streetFighter2.jpg" id="sfCharSelect">
         <div id="sfGameCat">
         Catégorie : <?php
             $description = $Jeu->getDescription();

@@ -24,9 +24,19 @@ $connexion = connexion();;?>
 <body>
 <?php
 if (is_a($connexion,  "PDO")) {
-if (isset($_SESSION['user']))
-{ $leUser=$_SESSION['user'];
-    $_SESSION['user']=$leUser
+
+if(isset($_POST['modifier'])) {
+$connexion = connexion();
+$crudUser = new user_Crud($connexion);
+$unUser=$_SESSION['user'];
+if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['mail'])
+    && !empty($_POST['mdp']) && !empty($_POST['departement'])&& !empty($_POST['sexe'])) {
+    $verif=$crudUser->updateUser($unUser, ($_POST['nom']), ($_POST['prenom']),($_POST['mail']), ($_POST['mdp']),
+        ($_POST['departement']),($_POST['sexe']));
+    $User=$crudUser->recupUser(($_POST['mail']));
+    $_SESSION['user']=$User;}}
+if ((isset($_SESSION['user']))&& (!isset($_SESSION['modifier'])))
+{ $leUser=$_SESSION['user'] ;
     ?>
     <div class="container">
         <label for="login" class="form-label">Adresse mail : </label>
@@ -34,26 +44,21 @@ if (isset($_SESSION['user']))
                id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
         <label for="nom" class="form-label">Nom : </label>
         <input type="text" class="form-control"
-               id="nom" name="nom" disabled value="
-               <?php echo $leUser->getNom();?>">
+               id="nom" name="nom" disabled value="<?php echo $leUser->getNom();?>">
         <label for="prenom" class="form-label">Prénom : </label>
         <input type="text" class="form-control"
-               id="prenom" name="prenom" disabled value="
-               <?php echo $leUser->getPrenom();?>">
+               id="prenom" name="prenom" disabled value="<?php echo $leUser->getPrenom();?>">
         <label for="naissance" class="form-label">Date de naissance : </label>
         <input type="text" class="form-control"
-               id="datedeNaissance" name="datedeNaissance" disabled value="
-               <?php $date=$leUser->getDateDeNaissance();
+               id="datedeNaissance" name="datedeNaissance" disabled value="<?php $date=$leUser->getDateDeNaissance();
         $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
         echo $dateN;?>">
         <label for="sexe" class="form-label">Sexe : </label>
         <input type="text" class="form-control"
-               id="sexe" name="sexe" disabled value="
-               <?php echo $leUser->getSexe();?>">
+               id="sexe" name="sexe" disabled value="<?php echo $leUser->getSexe();?>">
         <label for="departement" class="form-label">Département : </label>
         <input type="text" class="form-control"
-               id="departement" name="departement" disabled value="
-               <?php echo $leUser->getDepartement();?>">
+               id="departement" name="departement" disabled value="<?php echo $leUser->getDepartement();?>">
     </div>
     <form action="Index.php" method ="POST">
         <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
@@ -62,6 +67,9 @@ if (isset($_SESSION['user']))
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
         Supprimer
     </button>
+    <form action="modifUser.php" >
+        <button type="submit" name="modif" value="modif">Modifier ses informations</button>
+    </form>
 
     <!-- Modal -->
     <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
@@ -99,6 +107,12 @@ if (isset($_SESSION['user']))
 
             $crudUser = new user_Crud($connexion);
              $leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
+             if ($leUser==null){
+                 $_POST['erreur']="erreur";
+                 header('Location: login_connect.php');
+                 exit();
+             }
+             else {
              $_SESSION['user']=$leUser;?>
 
                          <div class="container">
@@ -107,26 +121,22 @@ if (isset($_SESSION['user']))
                        id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
                 <label for="nom" class="form-label">Nom : </label>
                 <input type="text" class="form-control"
-                       id="nom" name="nom" disabled value="
-               <?php echo $leUser->getNom();?>">
+                       id="nom" name="nom" disabled value="<?php echo $leUser->getNom();?>">
                 <label for="prenom" class="form-label">Prénom : </label>
                 <input type="text" class="form-control"
-                       id="prenom" name="prenom" disabled value="
-               <?php echo $leUser->getPrenom();?>">
+                       id="prenom" name="prenom" disabled value="<?php echo $leUser->getPrenom();?>">
             <label for="naissance" class="form-label">Date de naissance : </label>
             <input type="text" class="form-control"
-                   id="datedeNaissance" name="datedeNaissance" disabled value="
-               <?php $date=$leUser->getDateDeNaissance();
+                   id="datedeNaissance" name="datedeNaissance" disabled value="<?php
+            $date=$leUser->getDateDeNaissance();
             $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
             echo $dateN;?>">
             <label for="sexe" class="form-label">Sexe : </label>
             <input type="text" class="form-control"
-                   id="sexe" name="sexe" disabled value="
-               <?php echo $leUser->getSexe();?>">
+                   id="sexe" name="sexe" disabled value="<?php echo $leUser->getSexe();?>">
             <label for="departement" class="form-label">Département : </label>
             <input type="text" class="form-control"
-                   id="departement" name="departement" disabled value="
-               <?php echo $leUser->getDepartement();?>">
+                   id="departement" name="departement" disabled value="<?php echo $leUser->getDepartement();?>">
                              <form action="Index.php" method ="POST">
                                  <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
                              </form>
@@ -134,9 +144,9 @@ if (isset($_SESSION['user']))
                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
                                  Supprimer
                              </button>
-
                              <!-- Modal -->
-                             <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+                             <div class="modal fade" id="supprModal" tabindex="-1" role="dialog"
+                                  aria-labelledby="supprModalLabel" aria-hidden="true">
                                  <div class="modal-dialog" role="document">
                                      <div class="modal-content">
                                          <div class="modal-header">
@@ -160,7 +170,7 @@ if (isset($_SESSION['user']))
                                  </div>
                              </div>
 
-   <?php  }}
+   <?php  }}}
     if(!empty($_POST['enregistrer'])) {
 
         $nouvUser = new User($_POST['nom'],$_POST['prenom'],
@@ -174,6 +184,7 @@ if (isset($_SESSION['user']))
 /// verifier si le user n'existe pas déjà pour se créer un compte et lui afficher un message d'erreur si c'est le cas
                 if($existUser==$nouvUser){
                     $nouvUser=NULL;
+                    $existUser=NULL;
                     echo "Votre adresse mail est déjà utilisée.";?>
 
             <form action = "login_connect.php" method="post">
@@ -183,8 +194,8 @@ if (isset($_SESSION['user']))
 
 <?php }
                 else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
-                    $crudUser = new user_Crud($connexion);
-                    $leUser = $crudUser->insertUser($nouvUser);
+                    $insertUser = $crudUser->insertUser($nouvUser);
+                    $leUser= $crudUser->recupUser($mail);
                     $_SESSION['user'] = $leUser; ?>
 
 
@@ -195,26 +206,22 @@ if (isset($_SESSION['user']))
                        id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
                 <label for="nom" class="form-label">Nom : </label>
                 <input type="text" class="form-control"
-                       id="nom" name="nom" disabled value="
-               <?php echo $leUser->getNom();?>">
+                       id="nom" name="nom" disabled value="<?php echo $leUser->getNom();?>">
                 <label for="prenom" class="form-label">Prénom : </label>
                 <input type="text" class="form-control"
-                       id="prenom" name="prenom" disabled value="
-               <?php echo $leUser->getPrenom();?>">
+                       id="prenom" name="prenom" disabled value="<?php echo $leUser->getPrenom();?>">
             <label for="naissance" class="form-label">Date de naissance : </label>
             <input type="text" class="form-control"
-                   id="datedeNaissance" name="datedeNaissance" disabled value="
-               <?php $date=$leUser->getDateDeNaissance();
+                   id="datedeNaissance" name="datedeNaissance" disabled value="<?php
+            $date=$leUser->getDateDeNaissance();
             $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
             echo $dateN;?>">
             <label for="sexe" class="form-label">Sexe : </label>
             <input type="text" class="form-control"
-                   id="sexe" name="sexe" disabled value="
-               <?php echo $leUser->getSexe();?>">
+                   id="sexe" name="sexe" disabled value="<?php echo $leUser->getSexe();?>">
             <label for="departement" class="form-label">Département : </label>
             <input type="text" class="form-control"
-                   id="departement" name="departement" disabled value="
-               <?php echo $leUser->getDepartement();?>">
+                   id="departement" name="departement" disabled value="<?php echo $leUser->getDepartement();?>">
         </div>
                     <form action="Index.php" method ="POST">
                         <button class ="deco" type="submit" name="deconnexion" value="deconnexion">
@@ -225,7 +232,8 @@ if (isset($_SESSION['user']))
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="supprModal" tabindex="-1" role="dialog"
+                             aria-labelledby="supprModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -248,9 +256,7 @@ if (isset($_SESSION['user']))
                             </div>
                         </div>
 
-<?php } }
-}
-
+<?php } }}
 
    ?>
 
