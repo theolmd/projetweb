@@ -41,7 +41,6 @@ class user_Crud
             $retour = $unUser;
         } catch (PDOException $e) {
             $retour = NULL;
-            echo "pb requête";
         }
         return $retour;
     }
@@ -96,28 +95,27 @@ class user_Crud
         return $retour;
     }
 /// fonction pour récupérer un user
-    public function recupUser(int $unId): ?user
+    public function recupUser(string $mail): ?user
     {
-        $id = $unId;
+        $Email = $mail;
         $req_prepare =
-            "SELECT * 
-                FROM user 
-                WHERE user_id = :id";
+            "SELECT *
+                FROM t_user 
+                WHERE user_mail = :Email";
         $requete = $this->db->prepare($req_prepare);
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        $requete->bindParam(':Email', $Email, PDO::PARAM_STR);
 
         try {
             $requete->execute();
             $result = $requete->fetch(PDO::FETCH_OBJ);
             if ($result) {
-                $user = new user($unId, strval($result->user_nom),
+                $user = new user(strval($result->user_nom),
                     strval($result->user_prenom),
-                    strval($result->user_mail),
-                    strval($result->user_datedenaissance),
+                    intval($result->user_id),
+                    $mail, strval($result->user_datedenaissance),
                     strval($result->user_sexe),
                     strval($result->user_departement),
-                    strval($result->user_mdp)
-                );
+                    SHA1($result->user_mdp));
 
             } else {
                 $user = null;
@@ -125,8 +123,7 @@ class user_Crud
         } catch (PDOException $e) {
             $user = null;
         }
-        return $user;
-    }
+        return $user;}
 
 /// fonction pour modifier le mot de passe
     public function modifMDP($email, $mdp)

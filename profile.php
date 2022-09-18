@@ -26,7 +26,6 @@ $connexion = connexion();;?>
 if (is_a($connexion,  "PDO")) {
 if (isset($_SESSION['user']))
 { $leUser=$_SESSION['user'];
-    $_SESSION['user']=$leUser
     ?>
     <div class="container">
         <label for="login" class="form-label">Adresse mail : </label>
@@ -174,6 +173,7 @@ if (isset($_SESSION['user']))
 /// verifier si le user n'existe pas déjà pour se créer un compte et lui afficher un message d'erreur si c'est le cas
                 if($existUser==$nouvUser){
                     $nouvUser=NULL;
+                    $existUser=NULL;
                     echo "Votre adresse mail est déjà utilisée.";?>
 
             <form action = "login_connect.php" method="post">
@@ -183,8 +183,8 @@ if (isset($_SESSION['user']))
 
 <?php }
                 else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
-                    $crudUser = new user_Crud($connexion);
-                    $leUser = $crudUser->insertUser($nouvUser);
+                    $insertUser = $crudUser->insertUser($nouvUser);
+                    $leUser= $crudUser->recupUser($mail);
                     $_SESSION['user'] = $leUser; ?>
 
 

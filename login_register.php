@@ -45,17 +45,17 @@ include("navbarre.php")
         </div>
         <div class="form-group">
         <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
-        <input type="date" class="form-control" name="dateNaissance" >
+        <input type="date" class="form-control" name="dateNaissance" required >
         </div>
         <label for="sexe" class="form-label"><b>Sexe </b></label>
-        <select name="sexe" id="sexe">
+        <select name="sexe" id="sexe" required>
             <option value="">--Choisissez une option--</option>
             <option value="F">F</option>
             <option value="M">M</option>
             <option value="Autres">Autre</option>
         </select> <br>
         <label for="departement" class="form-label"><b>Département</b></label>
-        <input type="text" class="form-control" name="departement" >
+        <input type="text" class="form-control" name="departement" required >
 
         <div class="col-md-12 text-center mb-3">
         <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm" name="enregistrer" value="enregistrer"
