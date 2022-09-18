@@ -58,147 +58,201 @@ if (isset($_SESSION['user']))
     <form action="Index.php" method ="POST">
         <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
     </form>
+    <!-- Button modal de supression -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
+        Supprimer
+    </button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="supprModalLabel">Supprimer votre compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Voulez vous vraiment supprimer votre compte ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <form method="POST" action="Index.php">
+                        <button type="submit" name="supp" value="supp"
+                                class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php
 }
-    if (!empty($_POST['login'])) /// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
-        {
-        if(empty($_POST['mail']) || empty($_POST['mdp'])) {
-            header('Location: login_connect.php');
-            exit();}
+if (!empty($_POST['login'])) /// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
+{
+if(empty($_POST['mail']) || empty($_POST['mdp'])) {
+    header('Location: login_connect.php');
+    exit();}
 
-        else {
+else {
 
-            $crudUser = new user_Crud($connexion);
-             $leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
-             $_SESSION['user']=$leUser;?>
+$crudUser = new user_Crud($connexion);
+$leUser = $crudUser->verifUser($_POST['mail'], $_POST['mdp']);
+$_SESSION['user']=$leUser;?>
 
-                         <div class="container">
-                <label for="login" class="form-label">Adresse mail : </label>
-                <input type="text" class="form-control"
-                       id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
-                <label for="nom" class="form-label">Nom : </label>
-                <input type="text" class="form-control"
-                       id="nom" name="nom" disabled value="
+<div class="container">
+    <label for="login" class="form-label">Adresse mail : </label>
+    <input type="text" class="form-control"
+           id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
+    <label for="nom" class="form-label">Nom : </label>
+    <input type="text" class="form-control"
+           id="nom" name="nom" disabled value="
                <?php echo $leUser->getNom();?>">
-                <label for="prenom" class="form-label">Prénom : </label>
-                <input type="text" class="form-control"
-                       id="prenom" name="prenom" disabled value="
+    <label for="prenom" class="form-label">Prénom : </label>
+    <input type="text" class="form-control"
+           id="prenom" name="prenom" disabled value="
                <?php echo $leUser->getPrenom();?>">
-            <label for="naissance" class="form-label">Date de naissance : </label>
-            <input type="text" class="form-control"
-                   id="datedeNaissance" name="datedeNaissance" disabled value="
+    <label for="naissance" class="form-label">Date de naissance : </label>
+    <input type="text" class="form-control"
+           id="datedeNaissance" name="datedeNaissance" disabled value="
                <?php $date=$leUser->getDateDeNaissance();
-            $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
-            echo $dateN;?>">
-            <label for="sexe" class="form-label">Sexe : </label>
-            <input type="text" class="form-control"
-                   id="sexe" name="sexe" disabled value="
+    $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
+    echo $dateN;?>">
+    <label for="sexe" class="form-label">Sexe : </label>
+    <input type="text" class="form-control"
+           id="sexe" name="sexe" disabled value="
                <?php echo $leUser->getSexe();?>">
-            <label for="departement" class="form-label">Département : </label>
-            <input type="text" class="form-control"
-                   id="departement" name="departement" disabled value="
+    <label for="departement" class="form-label">Département : </label>
+    <input type="text" class="form-control"
+           id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
-                             <form action="Index.php" method ="POST">
-                                 <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
-                             </form>
+    <form action="Index.php" method ="POST">
+        <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
+    </form>
+    <!-- Button modal de supression -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
+        Supprimer
+    </button>
 
-   <?php  }}
+    <!-- Modal -->
+    <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="supprModalLabel">Supprimer votre compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Voulez vous vraiment supprimer votre compte ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Annuler</button>
+                    <form method="POST" action="Index.php">
+                        <button type="submit" name="supp" value="supp"
+                                class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php  }}
     if(!empty($_POST['enregistrer'])) {
 
-        $nouvUser = new User($_POST['nom'],$_POST['prenom'],
-            $_POST['mail'],$_POST['dateNaissance'],$_POST['sexe'],$_POST['departement'],$_POST['mdp']);
-        $crudUser = new user_Crud($connexion);
-        $mail=$nouvUser->getEmail();
-        $mdp=$nouvUser->getMotPasse();
-        $existUser = $crudUser->controleUser($mail, $mdp);
+    $nouvUser = new User($_POST['nom'],$_POST['prenom'],
+        $_POST['mail'],$_POST['dateNaissance'],$_POST['sexe'],$_POST['departement'],$_POST['mdp']);
+    $crudUser = new user_Crud($connexion);
+    $mail=$nouvUser->getEmail();
+    $mdp=$nouvUser->getMotPasse();
+    $existUser = $crudUser->controleUser($mail, $mdp);
 
 
-/// verifier si le user n'existe pas déjà pour se créer un compte et lui afficher un message d'erreur si c'est le cas
-                if($existUser==$nouvUser){
-                    $nouvUser=NULL;
-                    echo "Votre adresse mail est déjà utilisée.";?>
+    /// verifier si le user n'existe pas déjà pour se créer un compte et lui afficher un message d'erreur si c'est le cas
+    if($existUser==$nouvUser){
+        $nouvUser=NULL;
+        echo "Votre adresse mail est déjà utilisée.";?>
 
-            <form action = "login_connect.php" method="post">
-                <button type="submit">Se connecter</button>
-            </form>
-
-
-<?php }
-                else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
-                    $crudUser = new user_Crud($connexion);
-                    $leUser = $crudUser->insertUser($nouvUser);
-                    $_SESSION['user'] = $leUser; ?>
+        <form action = "login_connect.php" method="post">
+            <button type="submit">Se connecter</button>
+        </form>
 
 
+    <?php }
+    else { ///si le user se créer un compte et qu'il n'existe pas afficher ses infos
+    $crudUser = new user_Crud($connexion);
+    $leUser = $crudUser->insertUser($nouvUser);
+    $_SESSION['user'] = $leUser; ?>
 
-        <div class="container">
-                <label for="login" class="form-label">Adresse mail : </label>
-                <input type="text" class="form-control"
-                       id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
-                <label for="nom" class="form-label">Nom : </label>
-                <input type="text" class="form-control"
-                       id="nom" name="nom" disabled value="
+
+
+    <div class="container">
+        <label for="login" class="form-label">Adresse mail : </label>
+        <input type="text" class="form-control"
+               id="login" name="login" disabled value="<?php echo $leUser->getEmail();?>">
+        <label for="nom" class="form-label">Nom : </label>
+        <input type="text" class="form-control"
+               id="nom" name="nom" disabled value="
                <?php echo $leUser->getNom();?>">
-                <label for="prenom" class="form-label">Prénom : </label>
-                <input type="text" class="form-control"
-                       id="prenom" name="prenom" disabled value="
+        <label for="prenom" class="form-label">Prénom : </label>
+        <input type="text" class="form-control"
+               id="prenom" name="prenom" disabled value="
                <?php echo $leUser->getPrenom();?>">
-            <label for="naissance" class="form-label">Date de naissance : </label>
-            <input type="text" class="form-control"
-                   id="datedeNaissance" name="datedeNaissance" disabled value="
+        <label for="naissance" class="form-label">Date de naissance : </label>
+        <input type="text" class="form-control"
+               id="datedeNaissance" name="datedeNaissance" disabled value="
                <?php $date=$leUser->getDateDeNaissance();
-            $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
-            echo $dateN;?>">
-            <label for="sexe" class="form-label">Sexe : </label>
-            <input type="text" class="form-control"
-                   id="sexe" name="sexe" disabled value="
+        $dateN = DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');;
+        echo $dateN;?>">
+        <label for="sexe" class="form-label">Sexe : </label>
+        <input type="text" class="form-control"
+               id="sexe" name="sexe" disabled value="
                <?php echo $leUser->getSexe();?>">
-            <label for="departement" class="form-label">Département : </label>
-            <input type="text" class="form-control"
-                   id="departement" name="departement" disabled value="
+        <label for="departement" class="form-label">Département : </label>
+        <input type="text" class="form-control"
+               id="departement" name="departement" disabled value="
                <?php echo $leUser->getDepartement();?>">
-        </div>
-                    <form action="Index.php" method ="POST">
-                        <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
-                    </form>
+    </div>
+    <form action="Index.php" method ="POST">
+        <button class ="deco" type="submit" name="deconnexion" value="deconnexion">
+            Se déconnecter</button>
+        <!-- Button modal de supression -->
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
+            Supprimer
+        </button>
 
-                    <!-- Button modal de supression -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
-                        Supprimer
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="supprModalLabel">Supprimer votre compte</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Voulez vous vraiment supprimer votre compte ?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                    <form method="post" action="User_crud.php" id="form">
-                                        <input type="hidden" id="cache" name="cache"/>
-                                    </form>
-                                    <button id="delete" class="btn btn-danger" onclick="deleteUser()">Supprimer</button>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="supprModalLabel">Supprimer votre compte</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-=======
-                    <form action="Index.php" method="GET">
-                        <button type="button" name="deleteModal" value="deleteUser">Supprimer</button>
-                    </form>
-<?php } }
-}
-?>
+                    <div class="modal-body">
+                        Voulez vous vraiment supprimer votre compte ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <form method="POST" action="Index.php">
+                            <button type="submit" name="supp" value="supp"
+                                    class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php } }
+        }
+
+
+        ?>
 
 
 

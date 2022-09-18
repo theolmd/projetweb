@@ -26,60 +26,50 @@ include("navbarre.php")
                 <h1 >S'enregistrer</h1>
             </div>
         </div>
-    <form action ="profile.php" method="POST">
-        <div class="form-group">
-        <label for="nom" class="form-label"><b>Nom</b></label>
-        <input type="text" class="form-control" name="nom" >
-        </div>
-        <div class="form-group">
-        <label for="prenom" class="form-label"><b>Prénom</b></label>
-        <input type="text" class="form-control" name="prenom" >
-        </div>
-        <div class="form-group">
-        <label for="email" class="form-label"><b>Email *</b></label>
-        <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
-        </div>
-        <div class="form-group">
-        <label for="psw" class="form-label"><b>Mot de passe * (8 caractères minimum)</b></label>
-        <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" minlength="8"
-               pattern=”(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*” required>
-            <div class="alert alert-warning" role="alert">
-                Le mot de passe doit contenir au minimum 8 caractères dont une majuscule, une minuscule et un caractère spécial.
-            </div>
-        </div>
-        <div class="form-group">
-        <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
-        <input type="date" class="form-control" name="dateNaissance" >
-        </div>
-        <label for="sexe" class="form-label"><b>Sexe </b></label>
-        <select name="sexe" id="sexe">
-            <option value="">--Choisissez une option--</option>
-            <option value="F">F</option>
-            <option value="M">M</option>
-            <option value="Autres">Autre</option>
-        </select> <br>
-        <label for="departement" class="form-label"><b>Département</b></label>
-        <input type="text" class="form-control" name="departement" >
-
-        <div class="col-md-12 text-center mb-3">
-        <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm" name="enregistrer" value="enregistrer"
-                id="enregistrer" >S'enregistrer </button>
-
-        <p> * Les champs sont obligatoires. </p>
-
-
+        <form action ="profile.php" method="POST">
             <div class="form-group">
-                <p class="text-center">En vous inscrivant vous acceptez les
-                    <a href="cgu.php">Conditions d'utilisation</a></p>
+                <label for="nom" class="form-label"><b>Nom</b></label>
+                <input type="text" class="form-control" name="nom" >
             </div>
+            <div class="form-group">
+                <label for="prenom" class="form-label"><b>Prénom</b></label>
+                <input type="text" class="form-control" name="prenom" >
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label"><b>Email *</b></label>
+                <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
+            </div>
+            <div class="form-group">
+                <label for="psw" class="form-label"><b>Mot de passe *</b></label>
+                <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
+            </div>
+            <div class="form-group">
+                <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
+                <input type="date" class="form-control" name="dateNaissance" >
+            </div>
+            <label for="sexe" class="form-label"><b>Sexe </b></label>
+            <select name="sexe" id="sexe">
+                <option value="">--Choisissez une option--</option>
+                <option value="F">F</option>
+                <option value="M">M</option>
+                <option value="Autres">Autre</option>
+            </select> <br>
+            <label for="departement" class="form-label"><b>Département</b></label>
+            <input type="text" class="form-control" name="departement" >
 
-</div>
-</form>
+            <div class="col-md-12 text-center mb-3">
+                <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm" name="enregistrer" value="enregistrer"
+                        id="enregistrer" >S'enregistrer </button>
 
-<body>
+                <p> * Les champs sont obligatoires. </p>
 
-</body>
+            </div>
+        </form>
 
-<!-- Bannière de pied de page -->
+        <body>
+
+        </body>
+
+        <!-- Bannière de pied de page -->
 <?php include("footer.php")?>
 </html>
