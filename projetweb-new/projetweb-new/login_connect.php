@@ -56,12 +56,19 @@ include("navbarre.php")
                         </div>
                         <div class="form-group">
                             <p class="text-center">En vous connectant vous acceptez les
-                                <a href="#">Conditions d'utilisation</a></p>
+                                <a href="cgu.php">Conditions d'utilisation</a></p>
                         </div>
                         <div class="col-md-12 text-center ">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" name="login"
                             value="login" id="login">Se connecter</button>
                         </div>
+
+                            <!--<p class="text-center">
+                                <a href="forgot_password.php" class="btn">
+                                    </i> Mot de passe oublié ?
+                                </a>
+                            </p>-->
+
                         <div class="col-md-12 ">
                             <div class="login-or">
                                 <hr class="hr-or">

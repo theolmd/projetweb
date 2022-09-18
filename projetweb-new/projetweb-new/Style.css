@@ -190,3 +190,8 @@ H2
     margin-left: 45%;
 }
 
+#btnDeleteModal{
+    margin-left: 20px;
+    border: 2px solid orange;
+}
+
