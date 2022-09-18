@@ -192,6 +192,10 @@ if (isset($_SESSION['user']))
                             </div>
                         </div>
                     </div>
+=======
+                    <form action="Index.php" method="GET">
+                        <button type="button" name="deleteModal" value="deleteUser">Supprimer</button>
+                    </form>
 <?php } }
 }
 ?>

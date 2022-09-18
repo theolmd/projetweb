@@ -62,6 +62,7 @@ class user_Crud
         }
         return $retour;
     }
+
 /// fonction pour modifier un user
     public function updateUser(user $unUser, string $unNom, string $unPrenom,  string $unEmail,string $unMotPasse,
                                string $unSexe, string $unDepartement): bool
