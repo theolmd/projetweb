@@ -41,11 +41,16 @@ include_once("headerConnect.php");
 $unUser=$_SESSION['user'];
 $idUser=$unUser->getId();
     $CRUD_Concours= new concours_crud($connexion);
-    $verif=$CRUD_Concours->verifVote($idUser);
-
-    if($verif=true){ ?>
-        <H1> Tu as déjà voté ! Reviens l'année prochaine pour un autre vote ! </H1>
-    <?php }
+    $vote=$CRUD_Concours->verifVote($idUser);
+    if($vote>0){
+    $idJeu=$CRUD_Concours->recupIdJeuVote($idUser);
+    if (isset($idJeu)){
+        ?>
+        <H1> Tu as déjà voté pour </H1> <?php
+    $jeuxChoix=infosJeu($idJeu);
+    echo $jeuxChoix->GetNomjeu();?>
+    <H1> ! Reviens l'année prochaine pour un autre vote ! </H1>
+    <?php }}
     else { ?>
 
 <body>
