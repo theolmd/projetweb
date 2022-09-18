@@ -27,24 +27,30 @@ $connexion = connexion();?>
     </title>
 </head>
 <?php
+/// si la connexion est ok ajouter les jeux
 if (is_a($connexion,  "PDO")){
 
 $Jeux1=infosJeu(6);
 $Jeux2=infosJeu(7);
 $Jeux3=infosJeu(8);
 $Jeux4=infosJeu(9);
-
+/// si le joueur est connecté, vérifier s'il a déjà voté
 if(isset($_SESSION['user']))
 {
 include_once("headerConnect.php");
 $unUser=$_SESSION['user'];
 $idUser=$unUser->getId();
     $CRUD_Concours= new concours_crud($connexion);
-    $verif=$CRUD_Concours->verifVote($idUser);
-
-    if($verif=true){ ?>
-        <H1> Tu as déjà voté ! Reviens l'année prochaine pour un autre vote ! </H1>
-    <?php }
+    $vote=$CRUD_Concours->verifVote($idUser);
+    if($vote>0){
+    $idJeu=$CRUD_Concours->recupIdJeuVote($idUser);
+    if ($idJeu>0){
+        ?>
+        <H1> Tu as déjà voté pour </H1> <?php
+    $jeuxChoix=infosJeu($idJeu);
+    echo $jeuxChoix->GetNomjeu();?>
+    <H1> ! Reviens l'année prochaine pour un autre vote ! </H1>
+    <?php }}
     else { ?>
 
 <body>
@@ -53,17 +59,30 @@ $idUser=$unUser->getId();
 <form action="vote.php" method="POST">
 
                 <input type="radio" name="Choice1" value="6" checked>
-                <label for="Choice1"> <?php echo $Jeux1->GetNomjeu() ?></label>
+                <label for="Choice1"> <?php echo $Jeux1->GetNomjeu();
+                    $CRUD_Concours= new concours_crud($connexion);
+                    $nb=$CRUD_Concours->recupNbVote($Jeux1->getIdjeux());?>
+                    <br><?php
+                    echo $nb;?> <a> vote(s) pour ce jeu !</a> </label>
                 <input type="radio" name="Choice1" value="7">
-                <label for="Choice2"><?php echo $Jeux2->GetNomjeu() ?></label>
+                <label for="Choice2"><?php echo $Jeux2->GetNomjeu();
+                    $nb=$CRUD_Concours->recupNbVote($Jeux2->getIdjeux());?>
+                    <br><?php
+                    echo $nb;?> <a> vote(s) pour ce jeu !</label>
                 <input type="radio" name="Choice1" value="8">
-                <label for="Choice3"><?php echo $Jeux3->GetNomjeu() ?></label>
+                <label for="Choice3"><?php echo $Jeux3->GetNomjeu();
+                    $nb=$CRUD_Concours->recupNbVote($Jeux3->getIdjeux());?>
+                    <br><?php
+                    echo $nb;?> <a> vote(s) pour ce jeu !</label>
                 <input type="radio" name="Choice1" value="9">
-               <label for="Choice3"><?php echo $Jeux4->GetNomjeu() ?></label>
+               <label for="Choice3"><?php echo $Jeux4->GetNomjeu();
+                   $nb=$CRUD_Concours->recupNbVote($Jeux4->getIdjeux());?>
+                   <br><?php
+                   echo $nb;?> <a> vote(s) pour ce jeu !</label>
                 <button onclick="vote()" type="submit" >Voter</button>
         </form>
        <?php }
-
+/// si le user n'est pas connecté lui dire de se connecter
         }
 else {     include_once("navbarre.php");
     ?>
@@ -79,3 +98,12 @@ else {     include_once("navbarre.php");
 
 </body>
 </html>
+<footer>
+    <!-- Pied de page -->
+    <?php
+    if (isset($_SESSION['user'])) {
+        include_once("footerConnect.php");
+    } else {
+        include_once("Footer.php");
+    } ?>
+</footer>

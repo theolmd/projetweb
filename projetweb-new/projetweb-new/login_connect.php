@@ -23,7 +23,7 @@
 
     <!-- Titre de l'onglet -->
     <title>
-        Page de login
+        Se connecter
     </title>
 </head>
 <?php
@@ -56,19 +56,12 @@ include("navbarre.php")
                         </div>
                         <div class="form-group">
                             <p class="text-center">En vous connectant vous acceptez les
-                                <a href="cgu.php">Conditions d'utilisation</a></p>
+                                <a href="#">Conditions d'utilisation</a></p>
                         </div>
                         <div class="col-md-12 text-center ">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" name="login"
                             value="login" id="login">Se connecter</button>
                         </div>
-
-                            <!--<p class="text-center">
-                                <a href="forgot_password.php" class="btn">
-                                    </i> Mot de passe oublié ?
-                                </a>
-                            </p>-->
-
                         <div class="col-md-12 ">
                             <div class="login-or">
                                 <hr class="hr-or">
@@ -103,6 +96,6 @@ include("navbarre.php")
     }
 </script>
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("Footer.php")?>
 
 </html>

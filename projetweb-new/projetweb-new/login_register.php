@@ -36,42 +36,32 @@ include("navbarre.php")
         <input type="text" class="form-control" name="prenom" >
         </div>
         <div class="form-group">
-        <label for="email" class="form-label"><b>Email *</b></label>
+        <label for="email" class="form-label"><b>Email</b></label>
         <input type="text" class="form-control" placeholder="Entrez l'adresse mail" name="mail" required>
         </div>
         <div class="form-group">
-        <label for="psw" class="form-label"><b>Mot de passe * (8 caractères minimum)</b></label>
-        <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" minlength="8"
-               pattern=”(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*” required>
-            <div class="alert alert-warning" role="alert">
-                Le mot de passe doit contenir au minimum 8 caractères dont une majuscule, une minuscule et un caractère spécial.
-            </div>
+        <label for="psw" class="form-label"><b>Mot de passe</b></label>
+        <input type="password" class="form-control" placeholder="Entrez le mot de passe" name="mdp" required>
         </div>
         <div class="form-group">
         <label for="dateNaissance" class="form-label"><b>Date de naissance</b></label>
-        <input type="date" class="form-control" name="dateNaissance" >
+        <input type="date" class="form-control" name="dateNaissance" required >
         </div>
         <label for="sexe" class="form-label"><b>Sexe </b></label>
-        <select name="sexe" id="sexe">
+        <select name="sexe" id="sexe" required>
             <option value="">--Choisissez une option--</option>
             <option value="F">F</option>
             <option value="M">M</option>
             <option value="Autres">Autre</option>
         </select> <br>
         <label for="departement" class="form-label"><b>Département</b></label>
-        <input type="text" class="form-control" name="departement" >
+        <input type="text" class="form-control" name="departement" required >
 
         <div class="col-md-12 text-center mb-3">
         <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm" name="enregistrer" value="enregistrer"
                 id="enregistrer" >S'enregistrer </button>
 
-        <p> * Les champs sont obligatoires. </p>
-
-
-            <div class="form-group">
-                <p class="text-center">En vous inscrivant vous acceptez les
-                    <a href="cgu.php">Conditions d'utilisation</a></p>
-            </div>
+        <p> Tous les champs sont obligatoires. </p>
 
 </div>
 </form>
@@ -81,5 +71,5 @@ include("navbarre.php")
 </body>
 
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("Footer.php")?>
 </html>

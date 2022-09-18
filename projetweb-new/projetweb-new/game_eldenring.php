@@ -35,9 +35,6 @@ $Concours=infosConcours($Jeu);
 </head>
     <!-- Ajout de la bannière, recupération des infos du jeu et du concours -->
 
-
-
-
 <body>
             <!-- Affichage du nom du jeu -->
             <h3 id="sfTitle">
@@ -112,7 +109,7 @@ $Concours=infosConcours($Jeu);
             ?> <br>
         </div>
     </div>
-
+<!-- affichage des infos du tournoi -->
     <div class="container">
         <H2 id="sfTitleDesc">
             Le tournoi :
@@ -178,15 +175,24 @@ $Concours=infosConcours($Jeu);
                             </div>
         </div>
     </div>
-
+<!-- bouton de vote -->
     <div>
         <button class="btn" id="btnVote">
-            <a href="login_connect.php">
+            <a href="vote_choices.php">
                 Je veux voter !
             </a>
         </button>
     </div>
+            </section>
 
 </body></html>
-<?php include_once("Footer.php")?>
+<footer>
+    <!-- Pied de page -->
+    <?php
+    if (isset($_SESSION['user'])) {
+        include_once("footerConnect.php");
+    } else {
+        include_once("Footer.php");
+    } ?>
+</footer>
 

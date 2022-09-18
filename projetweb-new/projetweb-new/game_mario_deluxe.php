@@ -182,17 +182,24 @@ if (isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
-
+<!-- bouton vote -->
     <div>
         <button class="btn" id="btnVote">
-            <a href="login_connect.php">
+            <a href="vote_choices.php">
                 Je veux voter !
             </a>
         </button>
     </div>
+    </section>
 
 </body>
-<!-- Bannière de pied de page -->
-<img id="banniere" src="img/banniere_16.png">
-
+<footer>
+<!-- Pied de page -->
+<?php
+if (isset($_SESSION['user'])) {
+    include_once("footerConnect.php");
+} else {
+    include_once("Footer.php");
+} ?>
+</footer>
 </html>
