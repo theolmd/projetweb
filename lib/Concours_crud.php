@@ -51,19 +51,19 @@ class Concours_crud
 ///fonction pour récupérer le nb de vote sur un concours
     public function recupNbVote(int $id) : int
     {
-        $idConcours = $id;
+        $idJeux = $id;
         $req_prepare = "SELECT COUNT(*)
                 FROM t_concours 
-                WHERE concours_idjeux = :idConcours
+                WHERE concours_idjeux = :idJeux
                 AND concours_voteiduser IS NOT NULL";
         $requete = $this->db->prepare($req_prepare);
-        $requete->bindParam(':idConcours', $idConcours, PDO::PARAM_INT);
+        $requete->bindParam(':idJeux', $idJeux, PDO::PARAM_INT);
         try {
             $requete->execute();
-            $result = $requete->fetch(PDO::FETCH_OBJ);
+            $result = $requete->fetchColumn();
 
         } catch (PDOException $e) {
-            $result = null;
+            $result = 0;
         }
         return $result;
     }
@@ -91,7 +91,8 @@ class Concours_crud
         }
         return $vote;
     }
-    public function verifVote(int $id_User) : bool
+
+    public function verifVote(int $id_User) : int
     {
         $idUser=$id_User;
         $req_prepare = "SELECT *
@@ -104,12 +105,32 @@ class Concours_crud
             $requete->execute();
             $result = $requete->fetch(PDO::FETCH_OBJ);
             if ($result) {
-                $verif=true;
+                $id = intval($result->concours_voteiduser);
         } else {
-                $verif = false;}}
+                $id =0;}}
             catch (PDOException $e) {
-            $verif=false;
+            $id=0;
         }
-        return $verif;
+        return $id;
+    }
+    public function recupIdJeuVote(int $id_User) : int
+    {
+        $idUser=$id_User;
+        $req_prepare = "SELECT *
+         FROM t_concours
+            WHERE concours_voteiduser= :idUser
+               ";
+        $requete = $this->db->prepare($req_prepare);
+        $requete->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        try {
+            $requete->execute();
+            $result = $requete->fetch(PDO::FETCH_OBJ);
+            if ($result) {
+                $id = intval($result->concours_idjeux);
+                }}
+        catch (PDOException $e) {
+            $id=0;
+        }
+        return $id;
     }
 }
