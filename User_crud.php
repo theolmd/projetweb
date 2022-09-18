@@ -41,7 +41,6 @@ class user_Crud
             $retour = $unUser;
         } catch (PDOException $e) {
             $retour = NULL;
-            echo "pb requête";
         }
         return $retour;
     }
@@ -63,8 +62,8 @@ class user_Crud
         return $retour;
     }
 /// fonction pour modifier un user
-    public function updateUser(user $unUser, string $unNom, string $unPrenom,  string $unEmail,string $unMotPasse,
-                               string $unSexe, string $unDepartement): bool
+    public function updateUser(User $unUser, string $unNom, string $unPrenom,  string $unEmail,string $unMotPasse,
+                                string $unDepartement,string $unSexe): bool
     {
         //récupération des valeurs
         $id = $unUser->getId();
@@ -75,10 +74,10 @@ class user_Crud
         $nouvSexe = $unSexe;
         $nouvDepartement = $unDepartement;
         //préparation de la requête
-        $update = $this->db->prepare("UPDATE user 
-        SET user_nom = :nouvNom, user_prenom = :nouvPrenom, user_mdp = SHA1(:nouvMdp), user_mai = :nouvEmail,
+        $update = $this->db->prepare("UPDATE t_user 
+        SET user_nom = :nouvNom, user_prenom = :nouvPrenom, user_mdp = SHA1(:nouvMdp), user_mail = :nouvEmail,
             user_sexe= :nouvSexe, user_departement = :nouvDepartement
-        WHERE id_user = :id");
+        WHERE user_id = :id");
         $update->bindParam(':id', $id, PDO::PARAM_INT);
         $update->bindParam(':nouvNom', $nouvNom, PDO::PARAM_STR);
         $update->bindParam(':nouvPrenom', $nouvPrenom, PDO::PARAM_STR);
@@ -89,35 +88,38 @@ class user_Crud
 
         try {
             $update->execute();
-            $retour = true;
+            if ($update){
+            $retour = true;}
+            else {
+                $retour=false;
+            }
         } catch (PDOException $e) {
             $retour = false;
         }
         return $retour;
     }
 /// fonction pour récupérer un user
-    public function recupUser(int $unId): ?user
+    public function recupUser(string $mail): ?user
     {
-        $id = $unId;
+        $Email = $mail;
         $req_prepare =
-            "SELECT * 
-                FROM user 
-                WHERE user_id = :id";
+            "SELECT *
+                FROM t_user 
+                WHERE user_mail = :Email";
         $requete = $this->db->prepare($req_prepare);
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        $requete->bindParam(':Email', $Email, PDO::PARAM_STR);
 
         try {
             $requete->execute();
             $result = $requete->fetch(PDO::FETCH_OBJ);
             if ($result) {
-                $user = new user($unId, strval($result->user_nom),
+                $user = new user(strval($result->user_nom),
                     strval($result->user_prenom),
-                    strval($result->user_mail),
-                    strval($result->user_datedenaissance),
+                    intval($result->user_id),
+                    $mail, strval($result->user_datedenaissance),
                     strval($result->user_sexe),
                     strval($result->user_departement),
-                    strval($result->user_mdp)
-                );
+                    SHA1($result->user_mdp));
 
             } else {
                 $user = null;
@@ -125,8 +127,7 @@ class user_Crud
         } catch (PDOException $e) {
             $user = null;
         }
-        return $user;
-    }
+        return $user;}
 
 /// fonction pour modifier le mot de passe
     public function modifMDP($email, $mdp)

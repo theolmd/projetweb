@@ -40,9 +40,6 @@ if (!empty($_POST['supp']))
     $crudUser = new User_Crud($connexion);
     if($crudUser->deleteUser($mail)){
         $_SESSION['user']=null;
-    ?>
-        <h1>Ca marche</h1>
-        <?php
     }
 }
 if (isset($_SESSION['user'])) {
