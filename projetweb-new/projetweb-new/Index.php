@@ -22,16 +22,26 @@ $connexion=connexion();?>
 
     <!-- Titre de l'onglet -->
     <title>
-        Page d'accueil
+        Accueil
     </title>
 </head>
 <?php
+/// se déconnecter
 if (!empty($_POST['deconnexion']))
 {
     $_SESSION['user']=null;
     session_destroy();
-}/// si le joueur essaye de se loger utiliser la fonction verifUser pour se connecter
-
+}
+/// supprimer son compte
+if (!empty($_POST['supp']))
+{
+    $user=$_SESSION['user'];
+    $mail=$user->getEmail();
+    $crudUser = new User_Crud($connexion);
+    if($crudUser->deleteUser($mail)){
+        $_SESSION['user']=null;
+    }
+}
 if (isset($_SESSION['user'])) {
     include_once("headerConnect.php");
 } else {
@@ -47,8 +57,6 @@ $id=9;
 $Jeu4=infosJeu($id);
 ?>
     <body>
-    <section class="heroe">
-
     <H1>
         Le Festival Geek 4 Fun vous présente <br> les 4 jeux préselectionnés
     </H1>
@@ -140,8 +148,17 @@ $Jeu4=infosJeu($id);
     </p>
     </div>
 </div>
+
     </section>
 </body>
 
 </html>
-<?php include_once("Footer.php")?>
+
+<footer>
+    <?php
+    if (isset($_SESSION['user'])) {
+    include_once("footerConnect.php");
+    } else {
+    include_once("Footer.php");
+    } ?>
+</footer>

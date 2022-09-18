@@ -78,7 +78,7 @@ $Concours=infosConcours($Jeu);
     </div>
             <!--Container detail du jeu-->
     <div class="container" id="sfGameDetail">
-        <img src="img/sheesh.jpg" id="sfCharSelect">
+        <img src="img/streetFighter2.jpg" id="sfCharSelect">
         <div id="sfGameCat">
         Catégorie : <?php
             $description = $Jeu->getDescription();
@@ -87,6 +87,7 @@ $Concours=infosConcours($Jeu);
         </div>
     </div>
 
+<!-- affichage des infos du tournoi -->
 
 
     <div class="container">
@@ -156,8 +157,9 @@ $Concours=infosConcours($Jeu);
     </div>
 
 <div>
+    <!-- bouton de vote -->
     <button class="btn" id="btnVote">
-        <a href="login_connect.php">
+        <a href="vote_choices.php">
             Je veux voter !
         </a>
     </button>
@@ -166,7 +168,14 @@ $Concours=infosConcours($Jeu);
 
 
 </body>
-<!-- Bannière de pied de page -->
-<img id="banniere" src="img/banniere_16.png">
+<footer>
+    <!-- Pied de page -->
+    <?php
+    if (isset($_SESSION['user'])) {
+        include_once("footerConnect.php");
+    } else {
+        include_once("Footer.php");
+    } ?>
+</footer>
 
 </html>

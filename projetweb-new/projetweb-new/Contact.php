@@ -59,7 +59,13 @@
 </div>
 </div>
 </body>
-
-<img id="banniere" src="img/banniere_16.png">
-
+<footer>
+    <!-- Pied de page -->
+    <?php
+    if (isset($_SESSION['user'])) {
+        include_once("footerConnect.php");
+    } else {
+        include_once("Footer.php");
+    } ?>
+</footer>
 </html>

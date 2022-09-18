@@ -23,11 +23,12 @@
 
     <!-- Titre de l'onglet -->
     <title>
-        Page de login
+        Se connecter
     </title>
 </head>
 <?php
-include("navbarre.php")
+include("navbarre.php");
+session_start();
 ?>
 
 <!-- Page de connexion -->
@@ -60,7 +61,7 @@ include("navbarre.php")
                         </div>
                         <div class="col-md-12 text-center ">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm" name="login"
-                                    value="login" id="login">Se connecter</button>
+                            value="login" id="login">Se connecter</button>
                         </div>
                         <div class="col-md-12 ">
                             <div class="login-or">
@@ -79,12 +80,21 @@ include("navbarre.php")
                             <p class="text-center"> Pas de compte ? <a href="login_register.php" id="signup">
                                     Enregistrez-vous ici</a></p>
                         </div>
+                        <div class="form-group">
+                            <p class="text-center"> Mot de passe oublié ? <a href="" id=""></a></p>
+                        </div>
                     </form>
 
                 </div>
             </div>
 
 </body>
+<?php if (!isset($_POST['erreur']))
+{
+echo "le mot de passe et/ou l'adresse mail est incorrect";
+$_POST['erreur']=NULL;
+}
+?>
 <script>
     function verif()
     //Affiche une alerte si au moins l'un des deux champs est vide
@@ -96,6 +106,6 @@ include("navbarre.php")
     }
 </script>
 <!-- Bannière de pied de page -->
-<?php include("footer.php")?>
+<?php include("Footer.php")?>
 
 </html>
