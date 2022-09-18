@@ -164,14 +164,41 @@ if (isset($_SESSION['user']))
                         <button type="submit" name="deconnexion" value="deconnexion">Se déconnecter</button>
                     </form>
 
+                    <!-- Button modal de supression -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#supprModal">
+                        Supprimer
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="supprModal" tabindex="-1" role="dialog" aria-labelledby="supprModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="supprModalLabel">Supprimer votre compte</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Voulez vous vraiment supprimer votre compte ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <form method="post" action="User_crud.php" id="form">
+                                        <input type="hidden" id="cache" name="cache"/>
+                                    </form>
+                                    <button id="delete" class="btn btn-danger" onclick="deleteUser()">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+=======
                     <form action="Index.php" method="GET">
                         <button type="button" name="deleteModal" value="deleteUser">Supprimer</button>
                     </form>
 <?php } }
 }
-
-
-   ?>
+?>
 
 
 
